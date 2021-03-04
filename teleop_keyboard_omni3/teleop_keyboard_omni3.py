@@ -22,6 +22,11 @@ For Holonomic mode (strafing), hold down the shift key:
    J    K    L
    M    <    >
 
+For FreeMove mode:
+    w
+a   s   d
+r - rotate clockwise
+e - rotate backwards
 
 anything else : stop
 
@@ -48,7 +53,20 @@ MOVE_BINDINGS = {
         '<':(1,0,-1),
         '>':(0,1,-1),
         'M':(1,-1,0),  
+
+        # TODO get the velocity directions directly here with use of DIRECTION_2_WHEEL_VELOCITY_MATRIX => possible to do more complicated movement by pressing several buttons.
+        'w':(-0.57, 0, 0.57),
+        'a':(0.33, -0.67, 0.33),
+        's':(0.57, 0, -0.57),
+        'd':(-0.33, 0.67, -0.33),
+        'e':(0.33, 0.33, 0.33),
+        'r':(-0.33, -0.33, -0.33),
     }
+
+# Usage: (left_wheel_velocity, back_wheel_velocity, right_wheel_velocity) = np.matmul(DIRECTION_2_WHEEL_VELOCITY_MATRIX, (forward_velocity, right_velocity, turn_velocity))
+DIRECTION_2_WHEEL_VELOCITY_MATRIX = np.matrix([[1/3, -1/np.sqrt(3), 1/3],
+                                                [-2/3, 0, 1/3],
+                                                [1/3, 1/np.sqrt(3), 1/3]])
 
 SPEED_BINDINGS={
         'q':1.1,
