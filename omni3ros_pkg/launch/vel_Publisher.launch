@@ -1,5 +1,0 @@
-<launch>
-	
-	<node pkg="omni3ros_pkg" type="vel_Publisher.py" name="vel_Publisher" output="screen" />
-
-</launch>
