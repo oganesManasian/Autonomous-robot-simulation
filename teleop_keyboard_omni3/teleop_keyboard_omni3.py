@@ -3,6 +3,7 @@
 from __future__ import print_function
 
 import rospy
+import numpy as np
 
 from std_msgs.msg import Float64
 

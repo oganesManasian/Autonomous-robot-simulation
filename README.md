@@ -16,5 +16,5 @@ Project does simulation of environment where robot have to navigate in known pla
 4.  `catkin_make`
 5.  `source ~/catkin_ws/devel/setup.bash`
 6.  `source ~/.bashrc`
-7.  `roslaunch omni3ros_pkg velocity_controller.launch `- launch model simulation with controllers
-8.  `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py `- control model with keyboard
+7.  `roslaunch omni3ros_pkg velocity_controller.launch`- launch model simulation with controllers
+8.  `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- control model with keyboard

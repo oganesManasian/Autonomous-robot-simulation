@@ -3,9 +3,11 @@
 	
 	<!-- Launch empty world Gazebo -->
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
-		<arg name="world_name" default="worlds/empty.world"/>
-		<arg name="paused" value="false"/>
+		<!-- <arg name="world_name" value="$(find omni3ros_pkg)/worlds/cafe_simplified.world"/> -->
+		<arg name="world_name" value="$(find omni3ros_pkg)/worlds/simple_world.world"/>
+		<arg name="paused" value="true"/>
 		<arg name="gui" value="true"/>
+		<arg name="verbose" value="true"/>
 	</include>	
 	
 	<!-- Spawn the urdf model -->
@@ -14,7 +16,7 @@
 		
 	<arg name="x" default="0.0" />
 	<arg name="y" default="0.0" />
-	<arg name="z" default="0.0" />
+	<arg name="z" default="0.1" />
 	
 	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -x $(arg x) -y $(arg y) -z $(arg z) -model open_base -param robot_description"/>
 	
