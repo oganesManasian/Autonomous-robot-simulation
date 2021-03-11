@@ -17,7 +17,7 @@ import tf
 import sys, select, termios, tty
 
 ROBOT_WHEEL_RADIUS = 0.011 # Based on +-0.0055 roller z-axis positions in rim.urdf.xacro  
-ROBOT_RADIUS = 0.08 # Based on +-0.04 rim shofts in main.urdf.xacro
+ROBOT_RADIUS = 0.07 # Based on +-0.04 rim shifts in main.urdf.xacro
 BASE_SPEED = 0.1 # Initial speed
 
 help_info = """
@@ -84,7 +84,7 @@ def getKey():
 def print_speed(speed):
     return "Currently:\tspeed %s " % (speed)
 
-if __name__=="__main__":
+if __name__== "__main__":
     settings = termios.tcgetattr(sys.stdin)
 
     rospy.init_node('velocity_publisher')

@@ -14,9 +14,6 @@ import tf
 PUBLISH_RATE = 10 # 10 Hz
 VX = VY = VTH = 0 # Current speeds # TODO think about making them not global
 
-ERROR_FACTOR_TRANSLATION = 75 # Experimentally checked difference between distance really traveled and distance teoretically travelled # TODO solve
-ERROR_FACTOR_ROTATION = 13
-
 def update_odom(data):
     global VX, VY, VTH
     
