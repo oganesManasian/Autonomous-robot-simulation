@@ -19,3 +19,5 @@ Project does simulation of environment where robot have to navigate in known pla
 7.  `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch`- launch model simulation (Gazebo + Rviz) with controllers
 8.  `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- control model with keyboard
 9.  `rosrun teleop_keyboard_omni3 odom_tf_publisher.py` - run odometry broadcasting
+10. `roslaunch omni3ros_pkg gmapping.launch`- launch gmapping module o build the map
+11. `rosrun map_server map_saver -f map` - save map of environment

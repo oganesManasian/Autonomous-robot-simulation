@@ -16,64 +16,9 @@ from geometry_msgs.msg import Twist, Vector3
 import tf
 import sys, select, termios, tty
 
-# help_info = """
-# Reading from the keyboard !
-# ---------------------------
-# Moving around:
-#    u    i    o
-#    j    k    l
-#    m    ,    .
-
-# For Holonomic mode (strafing), hold down the shift key:
-# ---------------------------
-#    U    I    O
-#    J    K    L
-#    M    <    >
-
-# For FreeMove mode:
-#     w
-# a   s   d
-# r - rotate clockwise
-# e - rotate backwards
-
-# anything else : stop
-
-# q/z : increase/decrease max speeds by 10%
-
-# CTRL-C to quit
-# """
-
-
-
-
-
-# MOVE_BINDINGS = {
-#     'i':(-1,0,1),
-#     'o':(-1,1,0),
-#     'j':(1,1,1),
-#     'l':(-1,-1,-1),
-#     'u':(-1,0,1),
-#     ',':(1,0,-1),
-#     '.':(0,1,-1),
-#     'm':(1,-1,0),  
-
-#     'I':(-1,0,1),
-#     'O':(-1,1,0),
-#     'J':(1,-2,1),
-#     'L':(-1,2,-1),
-#     'U':(0,-1,1),
-#     '<':(1,0,-1),
-#     '>':(0,1,-1),
-#     'M':(1,-1,0),  
-
-#     # TODO get the velocity directions directly here with use of DIRECTION_2_WHEEL_VELOCITY_MATRIX => possible to do more complicated movement by pressing several buttons.
-#     'w':(-0.57, 0, 0.57),
-#     'a':(0.33, -0.67, 0.33),
-#     's':(0.57, 0, -0.57),
-#     'd':(-0.33, 0.67, -0.33),
-#     'e':(0.33, 0.33, 0.33),
-#     'r':(-0.33, -0.33, -0.33),
-# }
+ROBOT_WHEEL_RADIUS = 0.011 # Based on +-0.0055 roller z-axis positions in rim.urdf.xacro  
+ROBOT_RADIUS = 0.08 # Based on +-0.04 rim shofts in main.urdf.xacro
+BASE_SPEED = 0.1 # Initial speed
 
 help_info = """
 Use keyboard to set move directions:
@@ -102,9 +47,9 @@ MOVE_BINDINGS = {
 # From Twist to each motor command 
 MOTOR_BINDINGS = {
     "UP":(-0.57, 0, 0.57),
+    "DOWN":(0.57, 0, -0.57),
     "LEFT":(0.33, -0.67, 0.33),
-    "RIGHT":(0.57, 0, -0.57),
-    "DOWN":(-0.33, 0.67, -0.33),
+    "RIGHT":(-0.33, 0.67, -0.33),
     "COUNTER_CLOCKWISE":(0.33, 0.33, 0.33),
     "CLOCKWISE":(-0.33, -0.33, -0.33),
 }
@@ -149,7 +94,7 @@ if __name__=="__main__":
 
     pub_twist = rospy.Publisher('/open_base/twist', Twist, queue_size=1)
 
-    speed = 1.0
+    speed = BASE_SPEED
     speed_l = speed_b = speed_r = 0 # Motor speeds
     vx = vy = vth = 0 # Direction speeds
 
@@ -176,16 +121,17 @@ if __name__=="__main__":
                 if (key == '\x03'):
                     break
             
-            vell = Float64(speed_l * speed)
-            velb = Float64(speed_b * speed)
-            velr = Float64(speed_r * speed)
+            vell = Float64(speed_l * speed / ROBOT_WHEEL_RADIUS) # Devide by wheel radius since commands are for angular wheel speed (rad/s)
+            velb = Float64(speed_b * speed / ROBOT_WHEEL_RADIUS)
+            velr = Float64(speed_r * speed / ROBOT_WHEEL_RADIUS)
             
+            print("Published commands: ", vell, velb, velr)
             publ.publish(vell)
             pubb.publish(velb)
             pubr.publish(velr)
 
             # Publish twist message
-            twist_message = Twist(Vector3(vx * speed, vy * speed, 0), Vector3(0, 0, vth * speed))
+            twist_message = Twist(Vector3(vx * speed, vy * speed, 0), Vector3(0, 0, -vth * speed / ROBOT_RADIUS)) # Divide by robot radius since vth so far was linear speed
             pub_twist.publish(twist_message)
 
     except Exception as e:
