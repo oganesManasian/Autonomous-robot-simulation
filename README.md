@@ -21,3 +21,5 @@ Project does simulation of environment where robot have to navigate in known pla
 9.  `rosrun teleop_keyboard_omni3 odom_tf_publisher.py` - run odometry broadcasting
 10. `roslaunch omni3ros_pkg gmapping.launch`- launch gmapping module o build the map
 11. `rosrun map_server map_saver -f map` - save map of environment
+12. `roslaunch omni3ros_pkg amcl.launch` - Run AMCL localization
+13. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf 
