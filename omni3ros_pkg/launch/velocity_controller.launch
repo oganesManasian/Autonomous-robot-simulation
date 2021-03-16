@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
 
-	<include file="$(find omni3ros_pkg)/launch/urdf_gazebo_view.launch" />
-		
-
 	<!-- Load controllers -->
 	<rosparam file="$(find omni3ros_pkg)/config/joint_velocity.yaml" command="load"/> 
 
@@ -15,6 +12,5 @@
 	back_joint_velocity_controller
 	right_joint_velocity_controller
 	"/>
-
 
 </launch>

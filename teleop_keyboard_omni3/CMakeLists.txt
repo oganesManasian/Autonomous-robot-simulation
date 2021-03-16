@@ -9,7 +9,7 @@ catkin_package()
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
    teleop_keyboard_omni3.py
-   odom_tf_publisher.py
+   odom_publisher.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

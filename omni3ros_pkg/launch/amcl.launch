@@ -27,8 +27,9 @@
 
   <!-- When set to true, AMCL will subscribe to the map topic rather than making a service call to receive its map. -->
   <param name="use_map_topic" value="false"/>
+
   <!-- Set this to false to prevent amcl from publishing the transform between the global frame and the odometry frame. -->
-  <!-- Set to false if gmapping node is running -->
+  <!-- Set to false if gmapping or robot_localization node is running -->
   <param name="tf_broadcast" value="true"/>
   
   

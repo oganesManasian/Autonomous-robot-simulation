@@ -16,10 +16,20 @@ Project does simulation of environment where robot have to navigate in known pla
 4.  `catkin_make`
 5.  `source ~/catkin_ws/devel/setup.bash`
 6.  `source ~/.bashrc`
+
+I Scenario: SLAM
 7.  `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch`- launch model simulation (Gazebo + Rviz) with controllers
 8.  `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- control model with keyboard
-9.  `rosrun teleop_keyboard_omni3 odom_tf_publisher.py` - run odometry broadcasting
+9.  `rosrun teleop_keyboard_omni3 odom_publisher.py` - run odometry broadcasting
 10. `roslaunch omni3ros_pkg gmapping.launch`- launch gmapping module o build the map
 11. `rosrun map_server map_saver -f map` - save map of environment
-12. `roslaunch omni3ros_pkg amcl.launch` - Run AMCL localization
+12. `roslaunch omni3ros_pkg robot_localization.launch` - Run EKF wheel odometry and IMU sensor fusion
 13. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf 
+
+II Scenario: Localization
+7.  `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch`- launch model simulation (Gazebo + Rviz) with controllers
+8.  `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- control model with keyboard
+9.  `rosrun teleop_keyboard_omni3 odom_publisher.py` - run odometry broadcasting
+10. `roslaunch omni3ros_pkg amcl.launch` - Run AMCL localization
+11. `roslaunch omni3ros_pkg robot_localization.launch` - Run EKF wheel odometry and IMU sensor fusion
+12. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf 

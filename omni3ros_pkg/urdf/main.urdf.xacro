@@ -3,40 +3,42 @@
 
 	<xacro:include filename="$(find omni3ros_pkg)/urdf/rim.urdf.xacro"/>
 
-	<link name="origin_link"/>
+
+	<!-- <link name="origin_link"/> -->
 	<link name="base_link">
+		<inertial>
+			<!-- <mass value="0.07862944645"/> -->
+			<!-- Increased mass to decrease robot drift while standing -->
+			<mass value="0.07862944645"/>
+			<inertia
+				ixx="0.00002035985530754"
+				ixy="0"
+				ixz="0"
+				iyy="0.00002035985530754"
+				iyz="0"
+				izz="0.00003945961663220"/>
+			</inertial>
+		<visual>
+			<geometry>
+				<mesh filename="package://omni3ros_pkg/mesh/base.stl"/>
 
-	<inertial>
-		<mass value="0.07862944645"/>
-		<inertia
-			ixx="0.00002035985530754"
-			ixy="0"
-			ixz="0"
-			iyy="0.00002035985530754"
-			iyz="0"
-			izz="0.00003945961663220"/>
-		</inertial>
-	<visual>
-		<geometry>
-			<mesh filename="package://omni3ros_pkg/mesh/base.stl"/>
-
-		</geometry>
-		<material name="base_material">
-			<color rgba="1 1 1 1"/>
-		</material>
-	</visual>
-	<collision>
-		<geometry>
-			<mesh filename="package://omni3ros_pkg/mesh/base.stl"/>
-		</geometry>
-	</collision>
+			</geometry>
+			<material name="base_material">
+				<color rgba="1 1 1 1"/>
+			</material>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="package://omni3ros_pkg/mesh/base.stl"/>
+			</geometry>
+		</collision>
 
 	</link>
-	<joint name="base_joint" type="fixed">
+	<!-- <joint name="base_joint" type="fixed">
 		<parent link="origin_link" />
 		<child link="base_link" />
 		<origin xyz="0 0 0.01905"/>
-	</joint>
+	</joint> -->
 
 	<xacro:rim_macro
 		name="left"
@@ -73,7 +75,7 @@
 
 	<joint name="hokuyo_joint" type="fixed">
 	<axis xyz="0 1 0" />
-	<origin xyz=".15 0 .1" rpy="0 0 0"/>
+	<origin xyz="0 0 .04" rpy="0 0 0"/>
 	<parent link="base_link"/>
 	<child link="hokuyo"/>
 	</joint>
@@ -111,8 +113,10 @@
 			<horizontal>
 			<samples>720</samples>
 			<resolution>1</resolution>
-			<min_angle>-1.570796</min_angle>
-			<max_angle>1.570796</max_angle>
+			<!-- <min_angle>-1.570796</min_angle>
+			<max_angle>1.570796</max_angle> -->
+			<min_angle>-3.14159</min_angle>
+			<max_angle>3.14159</max_angle>
 			</horizontal>
 		</scan>
 		<range>
@@ -137,6 +141,31 @@
 	</sensor>
 	</gazebo>
 
+	<gazebo>
+		<plugin name="gazebo_ros_imu" filename="libgazebo_ros_imu.so">
+			<alwaysOn>true</alwaysOn>
+			<bodyName>base_link</bodyName>
+			<topicName>imu</topicName>
+			<serviceName>imu_service</serviceName>
+			<gaussianNoise>0.0</gaussianNoise>
+			<updateRate>50.0</updateRate>
+		</plugin>
+	</gazebo>
+
+	<!-- <gazebo>
+		<controller:gazebo_ros_imu name="imu_controller" plugin="libgazebo_ros_imu.so">
+			<alwaysOn>true</alwaysOn>
+			<updateRate>50.0</updateRate> 
+			<bodyName>imu_link</bodyName>
+			<topicName>imu_data</topicName>
+			<gaussianNoise>2.89e-08</gaussianNoise>
+			<xyzOffsets>0 0 0</xyzOffsets>
+			<rpyOffsets>0 0 0</rpyOffsets>
+			<interface:position name="imu_position"/>
+		</controller:gazebo_ros_imu>
+	</gazebo> -->
+
+	<!-- ROS control -->
 	<gazebo>
 		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
 		<robotNamespace>/open_base</robotNamespace>

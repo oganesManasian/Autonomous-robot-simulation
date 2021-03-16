@@ -7,11 +7,16 @@ This code does:
 
 import rospy
 import numpy as np
-from geometry_msgs.msg import Twist, Vector3
+from nav_msgs.msg import Odometry
+from geometry_msgs.msg import Twist, Vector3, Pose, Point, Quaternion
 import tf
 
-
+# Constants
 PUBLISH_RATE = 10 # 10 Hz
+TRANSLATION_VELOCITY_VARIANCE = 0.5
+ROTATION_VELOCITY_VARIANCE = 1
+
+# Global variable
 VX = VY = VTH = 0 # Current speeds # TODO think about making them not global
 
 def update_odom(data):
@@ -29,6 +34,7 @@ if __name__== "__main__":
 
     rospy.Subscriber("/open_base/twist", Twist, update_odom)
     odom_broadcaster = tf.TransformBroadcaster()
+    odom_publisher = rospy.Publisher("odom", Odometry, queue_size=50)
 
     # vx = vy = vth = 0 # Current speeds # Made global for now
     x = y = th = 0 # Current position
@@ -54,13 +60,36 @@ if __name__== "__main__":
         # since all odometry is 6DOF we'll need a quaternion created from yaw
         odom_quat = tf.transformations.quaternion_from_euler(0, 0, th)
 
-        odom_broadcaster.sendTransform(
-            (x, y, 0.),
-            odom_quat,
-            current_time,
-            "base_link", # Maybe it's better to use "origin_link"?
-            "odom"
-        )
+        # odom -> base_link will be published by EKF (robot_localization node)
+        # odom_broadcaster.sendTransform(
+        #     (x, y, 0.),
+        #     odom_quat,
+        #     current_time,
+        #     "base_link", # Maybe it's better to use "origin_link"?
+        #     "odom"
+        # )
+
+        # Next, we'll publish the odometry message over ROS
+        odom = Odometry()
+        odom.header.stamp = current_time
+        odom.header.frame_id = "odom"
+
+        # set the position
+        odom.pose.pose = Pose(Point(x, y, 0.), Quaternion(*odom_quat))
+
+        # set the velocity
+        odom.child_frame_id = "base_link"
+        odom.twist.twist = Twist(Vector3(VX, VY, 0), Vector3(0, 0, VTH))
+        odom.twist.covariance = [
+            TRANSLATION_VELOCITY_VARIANCE, 0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, TRANSLATION_VELOCITY_VARIANCE, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0, ROTATION_VELOCITY_VARIANCE
+        ]
+        # publish the message
+        odom_publisher.publish(odom)
 
         last_time = current_time
         rate.sleep()
