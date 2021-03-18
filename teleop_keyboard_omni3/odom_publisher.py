@@ -16,6 +16,9 @@ PUBLISH_RATE = 10 # 10 Hz
 TRANSLATION_VELOCITY_VARIANCE = 0.5
 ROTATION_VELOCITY_VARIANCE = 1
 
+# odom -> base_link will be published by EKF (robot_localization node) => false
+PUBLISH_TF = False # odom -> base_link 
+
 # Global variable
 VX = VY = VTH = 0 # Current speeds # TODO think about making them not global
 
@@ -60,14 +63,14 @@ if __name__== "__main__":
         # since all odometry is 6DOF we'll need a quaternion created from yaw
         odom_quat = tf.transformations.quaternion_from_euler(0, 0, th)
 
-        # odom -> base_link will be published by EKF (robot_localization node)
-        # odom_broadcaster.sendTransform(
-        #     (x, y, 0.),
-        #     odom_quat,
-        #     current_time,
-        #     "base_link", # Maybe it's better to use "origin_link"?
-        #     "odom"
-        # )
+        if PUBLISH_TF:
+            odom_broadcaster.sendTransform(
+                (x, y, 0.),
+                odom_quat,
+                current_time,
+                "base_link",
+                "odom"
+            )
 
         # Next, we'll publish the odometry message over ROS
         odom = Odometry()

@@ -19,7 +19,8 @@ Project does simulation of environment where robot have to navigate in known pla
 
 I Scenario: SLAM
 7.  `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch`- launch model simulation (Gazebo + Rviz) with controllers
-8.  `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- control model with keyboard
+8.  `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- send Twist control commands to model with keyboard
+8.5 `rosrun teleop_keyboard_omni3 wheel_controller.py`- convert Twist control commands to motor velocity commands
 9.  `rosrun teleop_keyboard_omni3 odom_publisher.py` - run odometry broadcasting
 10. `roslaunch omni3ros_pkg gmapping.launch`- launch gmapping module o build the map
 11. `rosrun map_server map_saver -f map` - save map of environment
@@ -28,7 +29,8 @@ I Scenario: SLAM
 
 II Scenario: Localization
 7.  `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch`- launch model simulation (Gazebo + Rviz) with controllers
-8.  `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- control model with keyboard
+8.  `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- send Twist control commands to model with keyboard
+8.5 `rosrun teleop_keyboard_omni3 wheel_controller.py`- convert Twist control commands to motor velocity commands
 9.  `rosrun teleop_keyboard_omni3 odom_publisher.py` - run odometry broadcasting
 10. `roslaunch omni3ros_pkg amcl.launch` - Run AMCL localization
 11. `roslaunch omni3ros_pkg robot_localization.launch` - Run EKF wheel odometry and IMU sensor fusion

@@ -10,6 +10,7 @@ catkin_package()
 catkin_install_python(PROGRAMS
    teleop_keyboard_omni3.py
    odom_publisher.py
+   wheel_controller.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
