@@ -1,12 +1,13 @@
 # Autonomous robot simulation
-Project does simulation of environment where robot have to navigate in known place but with dynamic objects.
+Project does simulation of environment where robot have to navigate in known place with dynamic objects.
 
 ## Features
 1. ROS1 (Noetic)
 2. Gazebo 11
 3. Omnidirectional robot
-4. Localisation
-5. Dynamic environment (people)
+4. Scenarios: Static environment (Done) / Static environment with dynamic objects (TODO) / Dynamic environment with Dynamic objects (TODO)
+5. Localisation
+6. Autonomous navigation
   
 
 ## Run
