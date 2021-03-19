@@ -1,0 +1,14 @@
+<launch>
+	<!-- Publish map for future localization-->
+
+
+<node name="move_base" pkg="move_base" type="move_base" output="screen">
+	<param name="controller_frequency" value="20.0"/>
+    <rosparam file="$(find omni3ros_pkg)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find omni3ros_pkg)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find omni3ros_pkg)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find omni3ros_pkg)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find omni3ros_pkg)/config/trajectory_planner.yaml" command="load" />
+</node> 
+
+</launch>

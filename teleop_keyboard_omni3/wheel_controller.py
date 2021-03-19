@@ -48,7 +48,7 @@ def publish_commands(data):
 def listener():
     rospy.init_node('wheel_controller')
 
-    rospy.Subscriber("/open_base/twist", Twist, publish_commands)
+    rospy.Subscriber("cmd_vel", Twist, publish_commands)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()

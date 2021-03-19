@@ -25,6 +25,7 @@ I Scenario: SLAM
 10. `roslaunch omni3ros_pkg gmapping.launch`- launch gmapping module o build the map
 11. `rosrun map_server map_saver -f map` - save map of environment
 12. `roslaunch omni3ros_pkg robot_localization.launch` - Run EKF wheel odometry and IMU sensor fusion
+12.5. `roslaunch omni3ros_pkg move_base.launch` - For autonomous navigation based on goal set with use of Rviz
 13. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf 
 
 II Scenario: Localization
@@ -34,4 +35,8 @@ II Scenario: Localization
 9.  `rosrun teleop_keyboard_omni3 odom_publisher.py` - run odometry broadcasting
 10. `roslaunch omni3ros_pkg amcl.launch` - Run AMCL localization
 11. `roslaunch omni3ros_pkg robot_localization.launch` - Run EKF wheel odometry and IMU sensor fusion
+11.5. `roslaunch omni3ros_pkg move_base.launch` - For autonomous navigation based on goal set with use of Rviz
 12. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf 
+
+## Autonomous navigation
+Goal poses can be set with use of Rviz. 

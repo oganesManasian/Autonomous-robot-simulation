@@ -1,0 +1,19 @@
+global_costmap:
+  update_frequency: 2.5
+  publish_frequency: 2.5
+  # This parameter define latency in published transforms (in seconds), if transforms are older than this, planner will stop.
+  transform_tolerance: 0.5
+  # This parameter defines if map can change in time, true if map will not change.
+  static_map: true
+  # This parameter defines if map should follow position of robot.
+  rolling_window: true
+  # These parameters define size of map (in meters).
+  width: 15
+  height: 15
+  # These parameters define position of left bottom map corner (in meters). If these values are half of map size, and rolling_window is set to true, then robot will always be in cost map centre.
+  origin_x: -7.5
+  origin_y: -7.5
+  # This parameter define size of single map cell (in meters).
+  resolution: 0.1
+  # This parameter defines distance to obstacle where cost should be considered, any further from obstacle than this value will be treated as no cost.
+  inflation_radius: 2.5

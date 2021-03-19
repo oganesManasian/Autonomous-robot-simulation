@@ -73,7 +73,7 @@ if __name__== "__main__":
     settings = termios.tcgetattr(sys.stdin)
 
     rospy.init_node('teleop_keyboard')
-    pub_twist = rospy.Publisher('/open_base/twist', Twist, queue_size=1)
+    pub_twist = rospy.Publisher('cmd_vel', Twist, queue_size=1)
 
     speed = BASE_SPEED
     vx = vy = vth = 0 # Direction speeds

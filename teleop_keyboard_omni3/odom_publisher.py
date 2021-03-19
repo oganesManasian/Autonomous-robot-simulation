@@ -35,7 +35,7 @@ if __name__== "__main__":
 
     rospy.init_node('odom_tf_publisher')
 
-    rospy.Subscriber("/open_base/twist", Twist, update_odom)
+    rospy.Subscriber("cmd_vel", Twist, update_odom)
     odom_broadcaster = tf.TransformBroadcaster()
     odom_publisher = rospy.Publisher("odom", Odometry, queue_size=50)
 

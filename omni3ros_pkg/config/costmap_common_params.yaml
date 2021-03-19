@@ -1,0 +1,21 @@
+# In this range obstacles will be considered during path planning.
+obstacle_range: 6.0
+# This parameter defines range in which area could be considered as free.
+raytrace_range: 8.5
+# This parameter defines coordinates of robot outline, this will considered during collision detecting.
+footprint: [[0.12, 0.14], [0.12, -0.14], [-0.12, -0.14], [-0.12, 0.14]]
+# This parameter defines topic where occupancy grid is published.
+map_topic: /map
+# This parameter defines if move_base should periodically check if map was updated.
+subscribe_to_updates: true
+# This parameter defines type of sensor used to provide data.
+observation_sources: laser_scan_sensor
+# This parameter define properties of used sensor, these are: sensor_frame - coordinate frame tied to sensor; data_type - type of message published by sensor; 
+# topic - name of topic where sensor data is published; marking - true if sensor can be used to mark area as occupied; clearing - true if sensor can be used to mark area as clear
+laser_scan_sensor: {sensor_frame: laser_frame, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+# This parameter defines coordinate frame tied to occupancy grid map.
+global_frame: map
+# This parameter defines coordinate frame tied to robot.
+robot_base_frame: base_link
+# This parameter define if costmap should be always published with complete data.
+always_send_full_costmap: true
