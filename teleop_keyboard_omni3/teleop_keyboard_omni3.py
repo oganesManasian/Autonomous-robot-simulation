@@ -44,14 +44,14 @@ MOVE_BINDINGS = {
     'r':"CLOCKWISE",
 }
 
-# TWIST is represented as (vx, vy, vth)
+# TWIST here is represented as (vx, vy, vth) (Usually Twist is ((vx, vy, vz), (pitch, roll, yaw)) )
 MOVE_DIRECTION2TWIST = {
     "UP": (0, 1, 0),
     "LEFT": (-1, 0, 0),
     "RIGHT": (1, 0, 0),
     "DOWN": (0, -1, 0),
-    "COUNTER_CLOCKWISE": (0, 0, -1),
-    "CLOCKWISE": (0, 0, 1),
+    "COUNTER_CLOCKWISE": (0, 0, 1),
+    "CLOCKWISE": (0, 0, -1),
 }
 
 SPEED_BINDINGS={
@@ -97,7 +97,8 @@ if __name__== "__main__":
                     break
 
             # Publish twist message
-            twist_message = Twist(Vector3(vx * speed, vy * speed, 0), Vector3(0, 0, -vth * speed / ROBOT_RADIUS)) # Divide by robot radius since vth so far was linear speed
+            twist_message = Twist(Vector3(vx * speed, vy * speed, 0), 
+                                  Vector3(0, 0, vth * speed / ROBOT_RADIUS)) # Divide by robot radius to get angular speed of robot
             pub_twist.publish(twist_message)
 
     except Exception as e:

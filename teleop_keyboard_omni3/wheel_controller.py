@@ -15,10 +15,10 @@ from geometry_msgs.msg import Twist, Vector3
 import tf
 import sys, select, termios, tty
 
-# # Usage: (left_wheel_velocity, back_wheel_velocity, right_wheel_velocity) = np.matmul(DIRECTION_2_WHEEL_VELOCITY_MATRIX, (x_velocity, y_velocity, turn_velocity))
-DIRECTION_2_WHEEL_VELOCITY_MATRIX = np.array([[1/3, -1/np.sqrt(3), 1/3], # Initial one taken from article. X axis goes left TODO make it to go right
-                                                [-2/3, 0, 1/3],
-                                                [1/3, 1/np.sqrt(3), 1/3]])
+# # Usage: (left_wheel_velocity, back_wheel_velocity, right_wheel_velocity) = np.matmul(TWIST2WHEEL_VELOCITY, (x_velocity, y_velocity, turn_velocity))
+TWIST2WHEEL_VELOCITY = np.array([[-1/3, -1/np.sqrt(3), 1/3],
+                                 [2/3, 0, 1/3],
+                                 [-1/3, 1/np.sqrt(3), 1/3]])
 
 
 ROBOT_RADIUS = 0.07 # Based on +-0.04 rim shifts in main.urdf.xacro
@@ -32,11 +32,11 @@ PUB_RIGHT = rospy.Publisher('/open_base/right_joint_velocity_controller/command'
 def publish_commands(data):
     vx = data.linear.x
     vy = data.linear.y
-    vth = data.angular.z * ROBOT_RADIUS # Back to linear speed
+    vth = data.angular.z * ROBOT_RADIUS # Back to linear speed from angular speed of robot
 
-    (left_wheel_velocity, back_wheel_velocity, right_wheel_velocity) = np.matmul(DIRECTION_2_WHEEL_VELOCITY_MATRIX, (-vx, vy, vth)) # -vx since in model X axis goes left
+    (left_wheel_velocity, back_wheel_velocity, right_wheel_velocity) = np.matmul(TWIST2WHEEL_VELOCITY, (vx, vy, vth))
 
-    vell = Float64(left_wheel_velocity / ROBOT_WHEEL_RADIUS)
+    vell = Float64(left_wheel_velocity / ROBOT_WHEEL_RADIUS) # Velocity controller takes angular speed of wheel
     velb = Float64(back_wheel_velocity / ROBOT_WHEEL_RADIUS)
     velr = Float64(right_wheel_velocity / ROBOT_WHEEL_RADIUS)
 
