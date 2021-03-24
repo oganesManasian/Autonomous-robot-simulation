@@ -1,8 +1,8 @@
 <launch>
 	<!-- Publish map for future localization-->
 
-<arg name="map_file" default="$(find omni3ros_pkg)/maps/map.yaml"/> 
+	<arg name="map_file" default="$(find omni3ros_pkg)/maps/biolab.yaml"/> 
 
-<node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" /> 
+	<node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" /> 
 
 </launch>

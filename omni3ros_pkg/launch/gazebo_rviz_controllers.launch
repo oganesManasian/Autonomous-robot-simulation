@@ -2,8 +2,14 @@
 
 <!-- Launch Rviz, Gazebo and controllers -->
 <launch>
+	<!-- <arg name="world" default="empty_room"/> -->
+	<arg name="world" default="biolab"/>
+	<!-- <arg name="world" default="cafe"/> -->
+
 	<!-- Load Gazebo -->
-	<include file="$(find omni3ros_pkg)/launch/urdf_gazebo_view.launch" />
+	<include file="$(find omni3ros_pkg)/launch/urdf_gazebo_view.launch">
+		<arg name="world" value="$(arg world)"/>
+	</include>
 
 	<!-- Load Rviz -->
 	<include file="$(find omni3ros_pkg)/launch/urdf_rviz_view.launch" />

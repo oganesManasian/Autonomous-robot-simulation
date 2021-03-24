@@ -1,43 +1,48 @@
 <launch>
 	<!-- Run AMCL localization -->
 
-<arg name="map_file" default="$(find omni3ros_pkg)/maps/map.yaml"/> 
+  <!-- <arg name="map_file" default="$(find omni3ros_pkg)/maps/empty_room.yaml"/>  -->
+  <arg name="world" default="biolab"/>
 
-<node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" /> 
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find omni3ros_pkg)/maps/$(arg world).yaml" /> 
 
-<node pkg="amcl" type="amcl" name="amcl">
-  <!-- <remap from="scan" to="base_scan"/> -->
+  <!-- <arg name="map_file" default="$(find omni3ros_pkg)/maps/biolab.yaml"/> 
 
-  <!-- If ~odom_model_type is "omni" then we use a custom model for an omni-directional base, 
-  which uses odom_alpha1 through odom_alpha5. The meaning of the first four parameters is similar 
-  to that for the "diff" model. The fifth parameter capture the tendency of the robot to translate 
-  (without rotating) perpendicular to the observed direction of travel. -->
-  <!-- Also, another bug was found but only fixed after Navigation 1.16, while the current release for 
-  Kinetic is Navigation 1.14.1. This bug only affects robot with type "omni" and "omni-corrected", where 
-  odom_alpha1 and odom_alpha4 are actually reversed. I.e. odom_alpha1 is for the translation odometry noise 
-  from robot translation-al motion, and odom_alpha4 represents the odometry rotation noise from robot's rotation motion. -->
-  <param name="odom_model_type" value="omni-corrected"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />  -->
 
-  <param name="global_frame_id" value="/map"/>
-  <param name="base_frame_id" value="/base_link"/>
-  <param name="odom_frame_id" value="/odom"/>
+  <node pkg="amcl" type="amcl" name="amcl">
+    <!-- <remap from="scan" to="base_scan"/> -->
 
-  <param name="min_particles" value="500"/>
-  <param name="max_particles" value="5000"/>
+    <!-- If ~odom_model_type is "omni" then we use a custom model for an omni-directional base, 
+    which uses odom_alpha1 through odom_alpha5. The meaning of the first four parameters is similar 
+    to that for the "diff" model. The fifth parameter capture the tendency of the robot to translate 
+    (without rotating) perpendicular to the observed direction of travel. -->
+    <!-- Also, another bug was found but only fixed after Navigation 1.16, while the current release for 
+    Kinetic is Navigation 1.14.1. This bug only affects robot with type "omni" and "omni-corrected", where 
+    odom_alpha1 and odom_alpha4 are actually reversed. I.e. odom_alpha1 is for the translation odometry noise 
+    from robot translation-al motion, and odom_alpha4 represents the odometry rotation noise from robot's rotation motion. -->
+    <param name="odom_model_type" value="omni-corrected"/>
 
-  <param name="initial_pose_x" value="0.0"/> 
-  <param name="initial_pose_y" value="0.0"/> 
-  <param name="initial_pose_a" value="0.0"/>
+    <param name="global_frame_id" value="/map"/>
+    <param name="base_frame_id" value="/base_link"/>
+    <param name="odom_frame_id" value="/odom"/>
 
-  <!-- When set to true, AMCL will subscribe to the map topic rather than making a service call to receive its map. -->
-  <param name="use_map_topic" value="false"/>
+    <param name="min_particles" value="500"/>
+    <param name="max_particles" value="5000"/>
 
-  <!-- Set this to false to prevent amcl from publishing the transform between the global frame and the odometry frame. -->
-  <!-- Set to false if gmapping or robot_localization node is running -->
-  <param name="tf_broadcast" value="true"/>
-  
-  
-</node>
+    <param name="initial_pose_x" value="0.0"/> 
+    <param name="initial_pose_y" value="0.0"/> 
+    <param name="initial_pose_a" value="0.0"/>
+
+    <!-- When set to true, AMCL will subscribe to the map topic rather than making a service call to receive its map. -->
+    <param name="use_map_topic" value="false"/>
+
+    <!-- Set this to false to prevent amcl from publishing the transform between the global frame and the odometry frame. -->
+    <!-- Set to false if gmapping or robot_localization node is running -->
+    <param name="tf_broadcast" value="true"/>
+    
+    
+  </node>
 
  
 </launch>
