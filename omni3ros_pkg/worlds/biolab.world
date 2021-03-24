@@ -3159,7 +3159,7 @@
           </waypoint>
           <waypoint>
             <time>20</time>
-            <pose>0 3.2 1.25 0 0 0</pose>
+            <pose>0 3.2 0 0 0 0</pose>
           </waypoint>
         </trajectory>
       </script>
