@@ -11,7 +11,20 @@ Simulation of autonomous omnidirectional operation in environments of varying co
   
 ## Environments
 1. empty_room - small empty room. Static environment.
-2. biolab - lab with 8 rooms and long hall. Static environment with dynamic objects (people).
+<p align="center">
+  <img src="images/room.png">
+  <br/>
+</p>
+2. biolab - lab with 8 rooms and long hall. Static environment with dynamic object (person).
+<p align="center">
+  <img src="images/biolab.png">
+  <br/>
+</p>
+3. airport terminal - big open space with 2 big (box) and small (person) moving objects.
+<p align="center">
+  <img src="images/airport_terminal.png">
+  <br/>
+</p>
 
 ## Run
 1.  `cd ~/catkin_ws/src`
