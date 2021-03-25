@@ -19,6 +19,7 @@ import sys, select, termios, tty
 
 ROBOT_RADIUS = 0.07 # Based on +-0.04 rim shifts in main.urdf.xacro
 BASE_SPEED = 0.1 # Initial speed
+ROTATION_SPEED_REDUCTION = 5 # Rotation speed is ROTATION_SPEED_REDUCTION times less than max speed  
 
 help_info = """
 Use keyboard to set move directions:
@@ -98,7 +99,7 @@ if __name__== "__main__":
 
             # Publish twist message
             twist_message = Twist(Vector3(vx * speed, vy * speed, 0), 
-                                  Vector3(0, 0, vth * speed / ROBOT_RADIUS)) # Divide by robot radius to get angular speed of robot
+                                  Vector3(0, 0, vth * speed / ROBOT_RADIUS / ROTATION_SPEED_REDUCTION)) # Divide by robot radius to get angular speed of robot
             pub_twist.publish(twist_message)
 
     except Exception as e:

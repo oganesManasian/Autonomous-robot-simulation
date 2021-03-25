@@ -4,6 +4,7 @@
 <launch>
 	<!-- <arg name="world" default="empty_room"/> -->
 	<arg name="world" default="biolab"/>
+	<!-- <arg name="world" default="airport_terminal"/> -->
 	<!-- <arg name="world" default="cafe"/> -->
 
 	<!-- Load Gazebo -->

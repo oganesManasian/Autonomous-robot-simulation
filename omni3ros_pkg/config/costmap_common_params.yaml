@@ -2,11 +2,17 @@
 obstacle_range: 6.0
 # This parameter defines range in which area could be considered as free.
 raytrace_range: 8.5
-# This parameter defines coordinates of robot outline, this will considered during collision detecting.
+# This parameter defines coordinates of robot outline, this will considered during collision detecting. [[right_forward_x, right_forward_y], right_back_xy, left_back_xy, left_forward_xy]
 footprint: [[0.12, 0.14], [0.12, -0.14], [-0.12, -0.14], [-0.12, 0.14]]
+
+# The inflation radius should be set to the maximum distance from obstacles at which a cost should be incurred. 
+# For example, setting the inflation radius at 0.55 meters means that the robot will treat all paths that stay 0.55 meters or more away from obstacles as having equal obstacle cost.
+inflation_radius: 0.6
+
+
 # This parameter defines topic where occupancy grid is published.
 map_topic: /map
-# This parameter defines if move_base should periodically check if map was updated.
+# This parameter defines if move_base should periodically check if map was updated. "true" if needed to cover cases with dynamic environment.
 subscribe_to_updates: true
 # This parameter defines type of sensor used to provide data.
 observation_sources: laser_scan_sensor

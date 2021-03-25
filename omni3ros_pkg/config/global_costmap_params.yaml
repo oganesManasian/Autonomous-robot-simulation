@@ -1,10 +1,19 @@
 global_costmap:
+  # global_frame: map
+  # robot_base_frame: base_link
+
   update_frequency: 2.5
   publish_frequency: 2.5
+  
   # This parameter define latency in published transforms (in seconds), if transforms are older than this, planner will stop.
-  transform_tolerance: 0.5
-  # This parameter defines if map can change in time, true if map will not change.
+  # transform_tolerance: 0.5
+  
+  # I This parameter defines if map can change in time, true if map will not change.
+  # II The "static_map" parameter determines whether or not the costmap should initialize itself based on a map served by the map_server. 
+  # II If you aren't using an existing map or map server, set the static_map parameter to false.
+  # Conclusion: false if gmapping (SLAM), true if amcl, map_server (localization)
   static_map: true
+  
   # This parameter defines if map should follow position of robot.
   rolling_window: true
   # These parameters define size of map (in meters).
@@ -16,4 +25,4 @@ global_costmap:
   # This parameter define size of single map cell (in meters).
   resolution: 0.1
   # This parameter defines distance to obstacle where cost should be considered, any further from obstacle than this value will be treated as no cost.
-  inflation_radius: 2.5
+  # inflation_radius: 2.5

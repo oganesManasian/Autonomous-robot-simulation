@@ -20,7 +20,7 @@ Simulation of autonomous omnidirectional operation in environments of varying co
   <img src="images/biolab.png">
   <br/>
 </p>
-3. airport terminal - big open space with 2 big (box) and small (person) moving objects.
+3. airport terminal - big open space. Static environment with dynamic objects: box and person.
 <p align="center">
   <img src="images/airport_terminal.png">
   <br/>

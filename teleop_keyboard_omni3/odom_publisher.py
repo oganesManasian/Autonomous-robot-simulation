@@ -32,8 +32,7 @@ def update_odom(data):
     print(data, "\n New speeds are:", (VX, VY, VTH))
 
 if __name__== "__main__":
-
-    rospy.init_node('odom_tf_publisher')
+    rospy.init_node('odom_publisher')
 
     rospy.Subscriber("cmd_vel", Twist, update_odom)
     odom_broadcaster = tf.TransformBroadcaster()
