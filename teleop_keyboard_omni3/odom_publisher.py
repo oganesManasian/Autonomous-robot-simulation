@@ -12,7 +12,9 @@ from geometry_msgs.msg import Twist, Vector3, Pose, Point, Quaternion
 import tf
 
 # Constants
-PUBLISH_RATE = 10 # 10 Hz
+PUBLISH_RATE = 50 # 10 Hz
+TRANSLATION_POSITION_VARIANCE = 1
+ROTATION_POSITION_VARIANCE = 1 # yaw
 TRANSLATION_VELOCITY_VARIANCE = 0.5
 ROTATION_VELOCITY_VARIANCE = 1
 
@@ -49,9 +51,9 @@ if __name__== "__main__":
         current_time = rospy.Time.now()
         dt = (current_time - last_time).to_sec()
 
-        delta_x = (VX * np.cos(th) - VY * np.sin(th)) * dt #/ ERROR_FACTOR_TRANSLATION
-        delta_y = (VX * np.sin(th) + VY * np.cos(th)) * dt #/ ERROR_FACTOR_TRANSLATION
-        delta_th = VTH * dt #/ ERROR_FACTOR_ROTATION
+        delta_x = (VX * np.cos(th) - VY * np.sin(th)) * dt
+        delta_y = (VX * np.sin(th) + VY * np.cos(th)) * dt
+        delta_th = VTH * dt
 
         x += delta_x
         y += delta_y
@@ -75,12 +77,20 @@ if __name__== "__main__":
         odom = Odometry()
         odom.header.stamp = current_time
         odom.header.frame_id = "odom"
+        odom.child_frame_id = "base_link"
 
         # set the position
         odom.pose.pose = Pose(Point(x, y, 0.), Quaternion(*odom_quat))
+        odom.pose.covariance = [
+            TRANSLATION_POSITION_VARIANCE, 0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, TRANSLATION_POSITION_VARIANCE, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0, ROTATION_POSITION_VARIANCE
+        ]
 
         # set the velocity
-        odom.child_frame_id = "base_link"
         odom.twist.twist = Twist(Vector3(VX, VY, 0), Vector3(0, 0, VTH))
         odom.twist.covariance = [
             TRANSLATION_VELOCITY_VARIANCE, 0.0, 0.0, 0.0, 0.0, 0.0,

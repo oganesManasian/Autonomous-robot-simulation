@@ -249,11 +249,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        sonar_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -327,8 +322,6 @@ Visualization Manager:
           Value: false
         roller_w_rim_right_link:
           Value: false
-        sonar_frame:
-          Value: false
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -392,8 +385,6 @@ Visualization Manager:
                   {}
                 roller_w_rim_right_link:
                   {}
-              sonar_frame:
-                {}
       Update Interval: 0
       Value: true
     - Alpha: 0.699999988079071
@@ -517,7 +508,7 @@ Visualization Manager:
           Value: true
         Value: true
       Enabled: false
-      Keep: 100
+      Keep: 10
       Name: Odometry (EKF)
       Position Tolerance: 0.10000000149011612
       Queue Size: 10
@@ -656,7 +647,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 4.03460693359375
+      Distance: 4.276185512542725
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -664,17 +655,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.8139829039573669
-        Y: -1.73783540725708
-        Z: 0.5881166458129883
+        X: -0.5617232322692871
+        Y: -1.5009678602218628
+        Z: 1.4762322902679443
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6902018189430237
+      Pitch: 0.9152013063430786
       Target Frame: <Fixed Frame>
-      Yaw: 4.5154314041137695
+      Yaw: 4.460433006286621
     Saved: ~
 Window Geometry:
   Displays:

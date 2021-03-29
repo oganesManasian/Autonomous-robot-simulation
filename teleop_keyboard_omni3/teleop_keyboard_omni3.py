@@ -19,7 +19,7 @@ import sys, select, termios, tty
 
 ROBOT_RADIUS = 0.07 # Based on +-0.04 rim shifts in main.urdf.xacro
 BASE_SPEED = 0.1 # Initial speed
-ROTATION_SPEED_REDUCTION = 5 # Rotation speed is ROTATION_SPEED_REDUCTION times less than max speed  
+ROTATION_SPEED_REDUCTION = 3 # Rotation speed is ROTATION_SPEED_REDUCTION times less than max speed  
 
 help_info = """
 Use keyboard to set move directions:
@@ -86,6 +86,7 @@ if __name__== "__main__":
             print(print_speed(speed))
 
             key = getKey()
+            print("You clicked:", key)
             if key in MOVE_BINDINGS.keys():
                 move_direction = MOVE_BINDINGS[key]
 
