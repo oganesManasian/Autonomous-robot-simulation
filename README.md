@@ -25,6 +25,11 @@ Simulation of autonomous omnidirectional operation in environments of varying co
   <img src="images/airport_terminal.png">
   <br/>
 </p>
+4. metro - two big open spaces with two halls connecting them. Dynamic envoronment (added standing people in one of halls which are not drawn on the map) with dynamic objects: 4 people in 1st space and 2 boxes in 2nd space
+<p align="center">
+  <img src="images/metro.png">
+  <br/>
+</p>
 
 ## Run
 1.  `cd ~/catkin_ws/src`
