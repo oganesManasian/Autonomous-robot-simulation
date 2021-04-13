@@ -21,9 +21,8 @@ TWIST2WHEEL_VELOCITY = np.array([[-1/3, -1/np.sqrt(3), 1/3],
                                  [-1/3, 1/np.sqrt(3), 1/3]])
 
 
-ROBOT_RADIUS = 0.07 # Based on +-0.04 rim shifts in main.urdf.xacro
-ROBOT_WHEEL_RADIUS = 0.011 # Based on +-0.0055 roller z-axis positions in rim.urdf.xacro  
-BASE_SPEED = 0.1 # Initial speed
+ROBOT_RADIUS = 0.7 # Based on +-0.04 rim shifts in main.urdf.xacro
+ROBOT_WHEEL_RADIUS = 0.11 # Based on +-0.0055 roller z-axis positions in rim.urdf.xacro  
 
 PUB_LEFT = rospy.Publisher('/open_base/left_joint_velocity_controller/command', Float64, queue_size=1)
 PUB_BACK = rospy.Publisher('/open_base/back_joint_velocity_controller/command', Float64, queue_size=1)

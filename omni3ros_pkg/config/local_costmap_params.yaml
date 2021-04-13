@@ -20,4 +20,4 @@ local_costmap:
   # This parameter define size of single map cell (in meters).
   resolution: 0.1
   # This parameter defines distance to obstacle where cost should be considered, any further from obstacle than this value will be treated as no cost.
-  inflation_radius: 0.6
+  inflation_radius: 0.1
