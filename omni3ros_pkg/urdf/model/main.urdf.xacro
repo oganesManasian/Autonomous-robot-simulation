@@ -32,7 +32,6 @@
 				<mesh filename="package://omni3ros_pkg/mesh/model/base.stl"/>
 			</geometry>
 		</collision>
-
 	</link>
 
 	<xacro:rim_macro
@@ -88,7 +87,7 @@
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-				<mesh filename="package://omni3ros_pkg/mesh/hokuyo.dae"/>
+					<mesh filename="package://omni3ros_pkg/mesh/hokuyo.dae"/>
 				</geometry>
 			</visual>
 
@@ -121,7 +120,7 @@
 						<resolution>0.01</resolution>
 					</range>
 					<noise>
-						<type>gaussian</type>
+						<type>gaussian<mesh filename="package://omni3ros_pkg/mesh/hokuyo.dae"/></type>
 						<!-- Noise parameters based on published spec for Hokuyo laser
 							achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
 							stddev of 0.01m will put 99.7% of samples within 0.03m of the true
@@ -178,21 +177,22 @@
 				<ray>
 					<scan>
 						<horizontal>
-						<samples>10</samples>
-						<resolution>1</resolution> 
-						<min_angle>-0.14835</min_angle>
-						<max_angle>0.14835</max_angle>
+							<samples>10</samples>
+							<resolution>1</resolution> 
+							<min_angle>-0.14835</min_angle>
+							<max_angle>0.14835</max_angle>
 						</horizontal>
 						<vertical>
-						<samples>10</samples>
-						<resolution>1</resolution> 
-						<min_angle>-0.14835</min_angle>
-						<max_angle>0.14835</max_angle> 
+							<samples>10</samples>
+							<resolution>1</resolution> 
+							<min_angle>-0.14835</min_angle>
+							<max_angle>0.14835</max_angle> 
 						</vertical>
 					</scan>
 					<range>
-						<min>0.01</min>
-						<max>2</max>
+						<min>0.01</min>	
+						<!-- TODO range is shown too small in the Gazebo and Rviz -->
+						<max>4</max>
 						<resolution>0.02</resolution>
 					</range>
 				</ray>
@@ -210,56 +210,79 @@
 	</xacro:if>
 
 	<!-- RGBD Camera -->
-	<!-- Camera -->
-	<!-- <joint name="camera_joint" type="fixed">
-		<axis xyz="0 1 0" />
-		<origin xyz="0.05 0 0.2" rpy="0 0 0"/>
-		<parent link="base_link"/>
-		<child link="camera_link"/>
-  	</joint>
 
-	<link name="camera_link">
-		<collision>
-			<origin xyz="0 0 0" rpy="0 0 0"/>
-			<geometry>
-			<box size="0.05 0.05 0.05"/>
-			</geometry>
-		</collision>
+	<!-- Intel realsense -->
 
-		<visual>
-			<origin xyz="0 0 0" rpy="0 0 0"/>
-			<geometry>
-			<box size="0.05 0.05 0.05"/>
-			</geometry>
-			<material name="red"/>
-		</visual>
+	<!-- <xacro:include filename="$(find omni3ros_pkg)/urdf/_d435.urdf.xacro"/> -->
 
-		<inertial>
-			<mass value="1e-5" />
-			<origin xyz="0 0 0" rpy="0 0 0"/>
-			<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
-		</inertial>
-	</link>
+	<!-- <xacro:include filename="$(find omni3ros_pkg)/urdf/_d435.urdf.xacro"> 
+		<sensor_d435 parent="$base_link"></sensor_d435>
+	</xacro:include> -->
 
-	<gazebo reference="camera_link">
-		<sensor name="depth_camera" type="depth">
-			<update_rate>20</update_rate>
-			<camera>
-				<horizontal_fov>1.047198</horizontal_fov>
-				<image>
-					<width>640</width>
-					<height>480</height>
-					<format>R8G8B8</format>
-				</image>
-				<clip>
-					<near>0.05</near>
-					<far>3</far>
-				</clip>
-			</camera>
+	<!-- Kinnect -->
+	<xacro:if value="$(arg camera)">
+		<joint name="camera_frame_joint" type="fixed">
+			<axis xyz="0 1 0" />
+			<!-- 1.57 turned camera to look along y axis (it makes sense since now robot forward part looks at positive direction of y axis) -->
+			<origin xyz="0 0 .6" rpy="0 0 1.57"/> 
+			<parent link="base_link"/>
+			<child link="camera_frame"/>
+		</joint>
 
-			<plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
+		<link name="camera_frame">
+			<collision name="collision">
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="0.073000 0.276000 0.072000"/>
+				</geometry>
+			</collision>
+
+			<visual name="visual">
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://omni3ros_pkg/mesh/kinect.dae"/>
+				</geometry>
+			</visual>
+
+			<inertial>
+				<mass value="0.1" />
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+			</inertial>
+		</link>
+
+		<!-- Need this since rviz frame does not match the kinects own frame. So for visualizing the kinect 
+		model correctly in gazebo and rviz you need 1 transform, but to transform the data you need another. 
+		https://answers.ros.org/question/329409/point-cloud-in-wrong-position-relative-to-robot/ -->
+		<joint name="camera_optical_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+            <parent link="camera_frame"/>
+            <child link="camera_frame_optical"/>
+        </joint>
+
+        <link name="camera_frame_optical"/>
+
+		<gazebo reference="camera_frame">
+			<sensor type="depth" name="camera">
+				<update_rate>20</update_rate>
+				<camera>
+					<horizontal_fov>1.047198</horizontal_fov>
+					<image>
+						<width>640</width>
+						<height>480</height>
+						<format>R8G8B8</format>
+					</image>
+					<clip>
+						<near>0.05</near>
+						<far>3</far>
+					</clip>
+				</camera>
+
+				<plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
 				<baseline>0.2</baseline>
 				<alwaysOn>true</alwaysOn>
+				<!-- Keep this zero, update_rate in the parent <sensor> tag
+					will control the frame rate. -->
 				<updateRate>0.0</updateRate>
 				<cameraName>camera_ir</cameraName>
 				<imageTopicName>/camera/color/image_raw</imageTopicName>
@@ -267,7 +290,7 @@
 				<depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
 				<depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
 				<pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
-				<frameName>camera_link</frameName>
+				<frameName>camera_frame_optical</frameName>
 				<pointCloudCutoff>0.5</pointCloudCutoff>
 				<pointCloudCutoffMax>3.0</pointCloudCutoffMax>
 				<distortionK1>0</distortionK1>
@@ -280,99 +303,12 @@
 				<Cy>0</Cy>
 				<focalLength>0</focalLength>
 				<hackBaseline>0</hackBaseline>
-			</plugin>
-		</sensor>
-	</gazebo> -->
-
-
-
-
-	<xacro:if value="$(arg camera)">
-		<joint name="camera_frame_joint" type="fixed">
-			<axis xyz="0 1 0" />
-			<origin xyz="0 0 .3" rpy="0 0 0"/>
-			<parent link="base_link"/>
-			<child link="camera_frame"/>
-		</joint>
-
-		<link name="camera_frame">
-			<inertial>
-				<mass value="1e-5" />
-				<origin xyz="0 0 0" rpy="0 0 0"/>
-				<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
-			</inertial>
-
-			<collision name="collision">
-				<geometry>
-					<box>
-						<size>0.073000 0.276000 0.072000</size>
-					</box>
-				</geometry>
-			</collision>
-
-			<visual name="visual">
-				<!-- <geometry>
-					<mesh>
-						<uri>model://kinect_ros/meshes/kinect.dae</uri>
-						<uri>package://omni3ros_pkg/mesh/kinect.dae</uri>
-					</mesh>
-				</geometry> -->
-				<geometry>
-					<box>
-						<size>0.073000 0.276000 0.072000</size>
-					</box>
-      			</geometry>
-      			<material name="red"/>
-			</visual>
-		</link>
-
-		<gazebo reference="camera_frame">
-			<sensor name="camera" type="depth">
-				<update_rate>20</update_rate>
-				<camera>
-				<horizontal_fov>1.047198</horizontal_fov>
-				<image>
-					<width>640</width>
-					<height>480</height>
-					<format>R8G8B8</format>
-				</image>
-				<clip>
-					<near>0.05</near>
-					<far>3</far>
-				</clip>
-				</camera>
-
-				<plugin name="camera_plugin" filename="libgazebo_ros_camera.so">
-					<baseline>0.2</baseline>
-					<alwaysOn>true</alwaysOn>
-					<!-- Keep this zero, update_rate in the parent <sensor> tag
-						will control the frame rate. -->
-					<updateRate>0.0</updateRate>
-					<cameraName>camera_ir</cameraName>
-					<imageTopicName>/camera/color/image_raw</imageTopicName>
-					<cameraInfoTopicName>/camera/color/camera_info</cameraInfoTopicName>
-					<depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
-					<depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
-					<pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
-					<frameName>camera_frame</frameName>
-					<pointCloudCutoff>0.5</pointCloudCutoff>
-					<pointCloudCutoffMax>3.0</pointCloudCutoffMax>
-					<distortionK1>0</distortionK1>
-					<distortionK2>0</distortionK2>
-					<distortionK3>0</distortionK3>
-					<distortionT1>0</distortionT1>
-					<distortionT2>0</distortionT2>
-					<CxPrime>0</CxPrime>
-					<Cx>0</Cx>
-					<Cy>0</Cy>
-					<focalLength>0</focalLength>
-					<hackBaseline>0</hackBaseline>
 				</plugin>
 			</sensor>
 		</gazebo>
-	</xacro:if>
+	</xacro:if> 
 
-	
+	<!-- IMU -->
 	<gazebo>
 		<plugin name="gazebo_ros_imu" filename="libgazebo_ros_imu.so">
 			<alwaysOn>true</alwaysOn>
