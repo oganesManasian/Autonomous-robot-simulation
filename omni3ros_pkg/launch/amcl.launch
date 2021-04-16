@@ -13,6 +13,60 @@
   <node pkg="amcl" type="amcl" name="amcl">
     <!-- <remap from="scan" to="base_scan"/> -->
 
+
+    <!-- Overall filter parameters -->
+
+    <param name="min_particles" value="500"/>
+    <param name="max_particles" value="5000"/>
+
+    <param name="initial_pose_x" value="0.0"/> 
+    <param name="initial_pose_y" value="0.0"/> 
+    <param name="initial_pose_a" value="1.57"/>
+
+    <!-- Exponential decay rate for the slow average weight filter, used in deciding when to recover by adding random poses. A good value might be 0.001. -->
+    <!-- <param name="recovery_alpha_slow" value="0.0"/> -->
+    <!-- Exponential decay rate for the fast average weight filter, used in deciding when to recover by adding random poses. A good value might be 0.1. -->
+    <!-- <param name="recovery_alpha_fast" value="0.0"/> -->
+
+    <!-- When set to true, AMCL will subscribe to the map topic rather than making a service call to receive its map. -->
+    <param name="use_map_topic" value="false"/>
+
+    <!-- Laser model  -->
+    <!-- Minimum scan range to be considered; -1.0 will cause the laser's reported minimum range to be used. -->
+    <!-- ~laser_min_range (double, default: -1.0) -->
+
+    <!-- Maximum scan range to be considered; -1.0 will cause the laser's reported maximum range to be used. -->
+    <!-- ~laser_max_range (double, default: -1.0) -->
+
+    <!-- How many evenly-spaced beams in each scan to be used when updating the filter. -->
+    <!-- ~laser_max_beams (int, default: 30) -->
+
+    <!-- Mixture weight for the z_hit part of the model. -->
+    <!-- ~laser_z_hit (double, default: 0.95) -->
+
+    <!-- Mixture weight for the z_short part of the model. -->
+    <!-- ~laser_z_short (double, default: 0.1) -->
+
+    <!-- Mixture weight for the z_max part of the model. -->
+    <!-- ~laser_z_max (double, default: 0.05) -->
+
+    <!-- Mixture weight for the z_rand part of the model. -->
+    <!-- ~laser_z_rand (double, default: 0.05) -->
+
+    <!-- Standard deviation for Gaussian model used in z_hit part of the model. -->
+    <!-- ~laser_sigma_hit (double, default: 0.2 meters) -->
+
+    <!-- Exponential decay parameter for z_short part of model. -->
+    <!-- ~laser_lambda_short (double, default: 0.1) -->
+
+    <!-- Maximum distance to do obstacle inflation on map, for use in likelihood_field model. -->
+    <!-- ~laser_likelihood_max_dist (double, default: 2.0 meters) -->
+
+    <!-- Which model to use, either beam, likelihood_field, or likelihood_field_prob (same as likelihood_field but incorporates the beamskip feature, if enabled). -->
+    <!-- ~laser_model_type (string, default: "likelihood_field") -->
+
+
+    <!-- Odometry model -->
     <!-- If ~odom_model_type is "omni" then we use a custom model for an omni-directional base, 
     which uses odom_alpha1 through odom_alpha5. The meaning of the first four parameters is similar 
     to that for the "diff" model. The fifth parameter capture the tendency of the robot to translate 
@@ -23,23 +77,28 @@
     from robot translation-al motion, and odom_alpha4 represents the odometry rotation noise from robot's rotation motion. -->
     <param name="odom_model_type" value="omni-corrected"/>
 
-    <param name="global_frame_id" value="/map"/>
-    <param name="base_frame_id" value="/base_link"/>
-    <param name="odom_frame_id" value="/odom"/>
+    <!-- Specifies the expected noise in odometry's rotation estimate from the rotational component of the robot's motion. -->
+    <!-- ~odom_alpha1 (double, default: 0.2) -->
 
-    <param name="min_particles" value="500"/>
-    <param name="max_particles" value="5000"/>
+    <!-- Specifies the expected noise in odometry's rotation estimate from translational component of the robot's motion. -->
+    <!-- ~odom_alpha2 (double, default: 0.2) -->
 
-    <param name="initial_pose_x" value="0.0"/> 
-    <param name="initial_pose_y" value="0.0"/> 
-    <param name="initial_pose_a" value="0.0"/>
+    <!-- Specifies the expected noise in odometry's translation estimate from the translational component of the robot's motion. -->
+    <!-- ~odom_alpha3 (double, default: 0.2) -->
 
-    <!-- When set to true, AMCL will subscribe to the map topic rather than making a service call to receive its map. -->
-    <param name="use_map_topic" value="false"/>
+    <!-- Specifies the expected noise in odometry's translation estimate from the rotational component of the robot's motion. -->
+    <!-- ~odom_alpha4 (double, default: 0.2) -->
+
+    <!-- Translation-related noise parameter (only used if model is "omni"). -->
+    <!-- ~odom_alpha5 (double, default: 0.2) -->
 
     <!-- Set this to false to prevent amcl from publishing the transform between the global frame and the odometry frame. -->
     <!-- Set to false if gmapping or robot_localization node is running -->
     <param name="tf_broadcast" value="true"/>
+
+    <param name="global_frame_id" value="/map"/>
+    <param name="base_frame_id" value="/base_link"/>
+    <param name="odom_frame_id" value="/odom"/>
     
     
   </node>

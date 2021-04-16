@@ -33,6 +33,8 @@ def publish_commands(data):
     vy = data.linear.y
     vth = data.angular.z * ROBOT_RADIUS # Back to linear speed from angular speed of robot
 
+    # Since we rotated model 90 degrees clockwise we need to recompute TWIST2WHEEL_VELOCITY. But so far let's just substitute x and y
+    vx, vy = -vy, vx 
     (left_wheel_velocity, back_wheel_velocity, right_wheel_velocity) = np.matmul(TWIST2WHEEL_VELOCITY, (vx, vy, vth))
 
     vell = Float64(left_wheel_velocity / ROBOT_WHEEL_RADIUS) # Velocity controller takes angular speed of wheel

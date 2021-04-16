@@ -9,7 +9,7 @@
 
 	<link name="base_link">
 		<inertial>
-			<mass value="0.17862944645"/>
+			<mass value="10.17862944645"/>
 			<inertia
 				ixx="0.002035985530754"
 				ixy="0"
@@ -21,7 +21,6 @@
 		<visual>
 			<geometry>
 				<mesh filename="package://omni3ros_pkg/mesh/model/base.stl"/>
-
 			</geometry>
 			<material name="base_material">
 				<color rgba="1 1 1 1"/>
@@ -33,7 +32,7 @@
 			</geometry>
 		</collision>
 	</link>
-
+<!-- 
 	<xacro:rim_macro
 		name="left"
 		color="0.3 0 0"
@@ -48,7 +47,23 @@
 		name="right"
 		color="0 0 0.3"
 		xyz="0.3464101615 0.2 0"
-		rpy="1.570796326794896 0 -1.047197551196597"/>
+		rpy="1.570796326794896 0 -1.047197551196597"/> -->
+
+	<xacro:rim_macro
+		name="left"
+		color="0.3 0 0"
+		xyz="0.2 0.3464101615 0"
+		rpy="1.570796326794896 0 -0.523599"/>
+	<xacro:rim_macro
+		name="back"
+		color="0 0.3 0"
+		xyz="-0.4 0 0"
+		rpy="1.570796326794896 0 1.5708"/>
+	<xacro:rim_macro
+		name="right"
+		color="0 0 0.3"
+		xyz="0.2 -0.3464101615 0"
+		rpy="1.570796326794896 0 -2.61799"/>
 
 	<gazebo reference="base_link">
     		<material>Gazebo/White</material>
@@ -223,8 +238,8 @@
 	<xacro:if value="$(arg camera)">
 		<joint name="camera_frame_joint" type="fixed">
 			<axis xyz="0 1 0" />
-			<!-- 1.57 turned camera to look along y axis (it makes sense since now robot forward part looks at positive direction of y axis) -->
-			<origin xyz="0 0 .6" rpy="0 0 1.57"/> 
+			<!-- Positive pitch so camera looks downwards to see ground obstacles -->
+			<origin xyz="0 0 .6" rpy="0 0.25 0"/> 
 			<parent link="base_link"/>
 			<child link="camera_frame"/>
 		</joint>
@@ -272,37 +287,38 @@
 						<height>480</height>
 						<format>R8G8B8</format>
 					</image>
-					<clip>
+					<!-- In default setup it was turned on, however it's doesn't make sense  -->
+					<!-- <clip>
 						<near>0.05</near>
 						<far>3</far>
-					</clip>
+					</clip> -->
 				</camera>
 
 				<plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
-				<baseline>0.2</baseline>
-				<alwaysOn>true</alwaysOn>
-				<!-- Keep this zero, update_rate in the parent <sensor> tag
-					will control the frame rate. -->
-				<updateRate>0.0</updateRate>
-				<cameraName>camera_ir</cameraName>
-				<imageTopicName>/camera/color/image_raw</imageTopicName>
-				<cameraInfoTopicName>/camera/color/camera_info</cameraInfoTopicName>
-				<depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
-				<depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
-				<pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
-				<frameName>camera_frame_optical</frameName>
-				<pointCloudCutoff>0.5</pointCloudCutoff>
-				<pointCloudCutoffMax>3.0</pointCloudCutoffMax>
-				<distortionK1>0</distortionK1>
-				<distortionK2>0</distortionK2>
-				<distortionK3>0</distortionK3>
-				<distortionT1>0</distortionT1>
-				<distortionT2>0</distortionT2>
-				<CxPrime>0</CxPrime>
-				<Cx>0</Cx>
-				<Cy>0</Cy>
-				<focalLength>0</focalLength>
-				<hackBaseline>0</hackBaseline>
+					<baseline>0.2</baseline>
+					<alwaysOn>true</alwaysOn>
+					<!-- Keep this zero, update_rate in the parent <sensor> tag
+						will control the frame rate. -->
+					<updateRate>0.0</updateRate>
+					<cameraName>camera_ir</cameraName>
+					<imageTopicName>/camera/color/image_raw</imageTopicName>
+					<cameraInfoTopicName>/camera/color/camera_info</cameraInfoTopicName>
+					<depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+					<depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
+					<pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
+					<frameName>camera_frame_optical</frameName>
+					<pointCloudCutoff>0.5</pointCloudCutoff>
+					<pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+					<distortionK1>0</distortionK1>
+					<distortionK2>0</distortionK2>
+					<distortionK3>0</distortionK3>
+					<distortionT1>0</distortionT1>
+					<distortionT2>0</distortionT2>
+					<CxPrime>0</CxPrime>
+					<Cx>0</Cx>
+					<Cy>0</Cy>
+					<focalLength>0</focalLength>
+					<hackBaseline>0</hackBaseline>
 				</plugin>
 			</sensor>
 		</gazebo>

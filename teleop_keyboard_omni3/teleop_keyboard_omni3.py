@@ -37,9 +37,9 @@ CTRL-C to quit
 
 # From keyboard to twist
 MOVE_BINDINGS = {
-    'w':"UP",
+    'w':"FORWARD",
     'a':"LEFT",
-    's':"DOWN",
+    's':"BACK",
     'd':"RIGHT",
     'e':"COUNTER_CLOCKWISE",
     'r':"CLOCKWISE",
@@ -47,10 +47,14 @@ MOVE_BINDINGS = {
 
 # TWIST here is represented as (vx, vy, vth) (Usually Twist is ((vx, vy, vz), (pitch, roll, yaw)) )
 MOVE_DIRECTION2TWIST = {
-    "UP": (0, 1, 0),
-    "LEFT": (-1, 0, 0),
-    "RIGHT": (1, 0, 0),
-    "DOWN": (0, -1, 0),
+    # "FORWARD": (0, 1, 0),
+    # "LEFT": (-1, 0, 0),
+    # "RIGHT": (1, 0, 0),
+    # "BACK": (0, -1, 0),
+    "FORWARD": (1, 0, 0),
+    "LEFT": (0, 1, 0),
+    "RIGHT": (0, -1, 0),
+    "BACK": (-1, 0, 0),
     "COUNTER_CLOCKWISE": (0, 0, 1),
     "CLOCKWISE": (0, 0, -1),
 }
