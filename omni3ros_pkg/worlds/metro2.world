@@ -1197,6 +1197,166 @@
       </script>
     </actor>
 
+    <!-- Actors room 2-->
+    <actor name="actor21">
+      <skin>
+        <filename>file://media/models/walk.dae</filename>
+        <!-- <scale>1.0</scale> -->
+      </skin>
+      <animation name="walking">
+        <filename>file://media/models/walk.dae</filename>
+        <!-- <scale>1.000000</scale> -->
+        <interpolate_x>true</interpolate_x>
+      </animation>
+
+      <script>
+        <delay_start>4</delay_start>
+        <trajectory id="21" type="walking">
+          <!-- Forward -->
+          <waypoint>
+            <time>0</time>
+            <pose>15 -0.25 0 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>9.9</time>
+            <pose>15 4 0 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>10</time>
+            <pose>15 4 0 0 0 -1.57</pose>
+          </waypoint>
+          <!-- Back -->
+          <waypoint>
+            <time>19.9</time>
+            <pose>15 -0.25 0 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>20</time>
+            <pose>15 -0.25 0 0 0 1.57</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+
+    <actor name="actor22">
+      <skin>
+        <filename>file://media/models/walk.dae</filename>
+        <!-- <scale>1.0</scale> -->
+      </skin>
+      <animation name="walking">
+        <filename>file://media/models/walk.dae</filename>
+        <!-- <scale>1.000000</scale> -->
+        <interpolate_x>true</interpolate_x>
+      </animation>
+
+      <script>
+        <delay_start>2</delay_start>
+        <trajectory id="22" type="walking">
+          <!-- Forward -->
+          <waypoint>
+            <time>0</time>
+            <pose>14 -0.25 0 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>9.9</time>
+            <pose>14 4 0 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>10</time>
+            <pose>14 4 0 0 0 -1.57</pose>
+          </waypoint>
+          <!-- Back -->
+          <waypoint>
+            <time>19.9</time>
+            <pose>14 -0.25 0 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>20</time>
+            <pose>14 -0.25 0 0 0 1.57</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+
+    <actor name="actor23">
+      <skin>
+        <filename>file://media/models/walk.dae</filename>
+        <!-- <scale>1.0</scale> -->
+      </skin>
+      <animation name="walking">
+        <filename>file://media/models/walk.dae</filename>
+        <!-- <scale>1.000000</scale> -->
+        <interpolate_x>true</interpolate_x>
+      </animation>
+
+      <script>
+        <delay_start>3</delay_start>
+        <trajectory id="23" type="walking">
+          <!-- Forward -->
+          <waypoint>
+            <time>0</time>
+            <pose>12 -0.25 0 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>9.9</time>
+            <pose>12 4 0 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>10</time>
+            <pose>12 4 0 0 0 -1.57</pose>
+          </waypoint>
+          <!-- Back -->
+          <waypoint>
+            <time>19.9</time>
+            <pose>12 -0.25 0 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>20</time>
+            <pose>12 -0.25 0 0 0 1.57</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+
+    <actor name="actor24">
+      <skin>
+        <filename>file://media/models/walk.dae</filename>
+        <!-- <scale>1.0</scale> -->
+      </skin>
+      <animation name="walking">
+        <filename>file://media/models/walk.dae</filename>
+        <!-- <scale>1.000000</scale> -->
+        <interpolate_x>true</interpolate_x>
+      </animation>
+
+      <script>
+        <delay_start>0</delay_start>
+        <trajectory id="24" type="walking">
+          <!-- Forward -->
+          <waypoint>
+            <time>0</time>
+            <pose>11 -0.25 0 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>9.9</time>
+            <pose>11 4 0 0 0 1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>10</time>
+            <pose>11 4 0 0 0 -1.57</pose>
+          </waypoint>
+          <!-- Back -->
+          <waypoint>
+            <time>19.9</time>
+            <pose>11 -0.25 0 0 0 -1.57</pose>
+          </waypoint>
+          <waypoint>
+            <time>20</time>
+            <pose>11 -0.25 0 0 0 1.57</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
 
     <!-- Static person -->
     <model name='person_standing1'>
