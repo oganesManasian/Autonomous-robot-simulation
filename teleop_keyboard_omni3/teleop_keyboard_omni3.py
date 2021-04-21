@@ -19,14 +19,18 @@ import sys, select, termios, tty
 
 ROBOT_RADIUS = 0.7 # Based on +-0.04 rim shifts in main.urdf.xacro
 BASE_SPEED = 0.5 # Initial speed
-ROTATION_SPEED_REDUCTION = 2 # Rotation speed is ROTATION_SPEED_REDUCTION times less than max speed  
 
 help_info = """
 Use keyboard to set move directions:
-    w
-a   s   d
-r - rotate clockwise
-e - rotate backwards
+q   w   e
+a       d
+z   x   c
+
+t - rotate clockwise
+r - rotate backwards
+v - drift facing right
+b - drift facing left
+space - stop
 
 anything else : stop
 
@@ -37,26 +41,38 @@ CTRL-C to quit
 
 # From keyboard to twist
 MOVE_BINDINGS = {
+    'q':"FORWARD_LEFT",
     'w':"FORWARD",
+    'e':"FORWARD_RIGHT",
     'a':"LEFT",
     's':"BACK",
     'd':"RIGHT",
-    'e':"COUNTER_CLOCKWISE",
-    'r':"CLOCKWISE",
+    'z':"BACKWARD_LEFT",
+    'x':"BACKWARD",
+    'c':"BACKWARD_RIGHT",
+
+    'r':"COUNTER_CLOCKWISE",
+    't':"CLOCKWISE",
+    'v':"DRIFT_FACING_RIGHT",
+    'b':"DRIFT_FACING_LEFT",
 }
 
 # TWIST here is represented as (vx, vy, vth) (Usually Twist is ((vx, vy, vz), (pitch, roll, yaw)) )
 MOVE_DIRECTION2TWIST = {
-    # "FORWARD": (0, 1, 0),
-    # "LEFT": (-1, 0, 0),
-    # "RIGHT": (1, 0, 0),
-    # "BACK": (0, -1, 0),
+    "FORWARD_LEFT": (1, 1, 0),
     "FORWARD": (1, 0, 0),
+    "FORWARD_RIGHT": (1, -1, 0),
     "LEFT": (0, 1, 0),
     "RIGHT": (0, -1, 0),
+    "BACKWARD_LEFT": (-1, 1, 0),
     "BACK": (-1, 0, 0),
+    "BACKWARD_RIGHT": (-1, -1, 0),
+
     "COUNTER_CLOCKWISE": (0, 0, 1),
     "CLOCKWISE": (0, 0, -1),
+    "DRIFT_FACING_RIGHT": (1, 1, -1),
+    "DRIFT_FACING_LEFT": (1, -1, 1),
+
 }
 
 SPEED_BINDINGS={
@@ -104,7 +120,7 @@ if __name__== "__main__":
 
             # Publish twist message
             twist_message = Twist(Vector3(vx * speed, vy * speed, 0), 
-                                  Vector3(0, 0, vth * speed / ROBOT_RADIUS / ROTATION_SPEED_REDUCTION)) # Divide by robot radius to get angular speed of robot
+                                  Vector3(0, 0, vth * speed / ROBOT_RADIUS)) # Divide by robot radius to get angular speed of robot
             pub_twist.publish(twist_message)
 
     except Exception as e:
