@@ -11,13 +11,13 @@
 		<inertial>
 			<mass value="10.17862944645"/>
 			<inertia
-				ixx="0.002035985530754"
+				ixx="0.2035985530754"
 				ixy="0"
 				ixz="0"
-				iyy="0.002035985530754"
+				iyy="0.2035985530754"
 				iyz="0"
-				izz="0.003945961663220"/>
-			</inertial>
+				izz="0.3945961663220"/>
+		</inertial>
 		<visual>
 			<geometry>
 				<mesh filename="package://omni3ros_pkg/mesh/model/base.stl"/>
