@@ -30,6 +30,11 @@ Simulation of autonomous omnidirectional operation in environments of varying co
   <img src="images/metro.png">
   <br/>
 </p>
+5. conference_room - small and big room with tight placed furniture. Static environment with dynamic object (person).  
+<p align="center">
+  <img src="images/conference_room.png">
+  <br/>
+</p>
 
 ## Run
 1.  `cd ~/catkin_ws/src`
@@ -68,3 +73,6 @@ Goal poses can be set with use of Rviz.
 ## Releases
 1.0:
 * Omnidirectional platform with IMU and 2D laser sensors. EKF does fusion of wheel odometry with IMU data. Than AMCL takes the result and predicts the correct position taking also into account laser scans. Standard ROS path planning algorithm based on set goal position provides global and local paths and control commands to follow them. Platform could be either controlled by these commands to reach the goal pose or with manual keyboard interface.
+
+## Models
+Some of models are taken from http://data.nvision2.eecs.yorku.ca/3DGEMS/.
