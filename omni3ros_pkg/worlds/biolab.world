@@ -3176,23 +3176,23 @@
         <trajectory id='0' type='walking'>
           <waypoint>
             <time>0</time>
-            <pose>0 3.2 0 0 -0 0</pose>
+            <pose>0.8 3.2 0 0 -0 0</pose>
           </waypoint>
           <waypoint>
-            <time>9.9</time>
-            <pose>13 3.2 0 0 -0 0</pose>
+            <time>9</time>
+            <pose>11.5 3.2 0 0 -0 0</pose>
           </waypoint>
           <waypoint>
             <time>10</time>
-            <pose>13 3.2 0 0 -0 3.14</pose>
+            <pose>11.5 3.2 0 0 -0 3.14</pose>
           </waypoint>
           <waypoint>
-            <time>19.9</time>
-            <pose>0 3.2 0 0 -0 3.14</pose>
+            <time>19</time>
+            <pose>0.8 3.2 0 0 -0 3.14</pose>
           </waypoint>
           <waypoint>
             <time>20</time>
-            <pose>0 3.2 0 0 -0 0</pose>
+            <pose>0.8 3.2 0 0 -0 0</pose>
           </waypoint>
         </trajectory>
       </script>
@@ -8470,11 +8470,23 @@
         <enable_wind>0</enable_wind>
       </link>
     </actor>
-    <gui fullscreen='0'>
+    <!-- <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose>5.74201 0.545373 24.2501 -0 1.47779 1.60857</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
+      </camera>
+    </gui> -->
+    <!-- Follow the robot -->
+    <gui fullscreen='0'> 
+      <camera name="user_camera">
+        <track_visual>
+          <name>open_base</name>
+          <static>false</static>
+          <use_model_frame>true</use_model_frame>
+          <xyz>-1.5 0 3</xyz>
+          <inherit_yaw>true</inherit_yaw>
+        </track_visual>
       </camera>
     </gui>
     <model name='ball_bearing_0'>
