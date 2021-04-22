@@ -32,22 +32,38 @@
 			</geometry>
 		</collision>
 	</link>
+<!-- 
+	<xacro:rim_macro
+		name="left"
+		color="0.3 0 0"
+		xyz="-0.3464101615 0.2 0"
+		rpy="1.570796326794896 0 1.047197551196597"/>
+	<xacro:rim_macro
+		name="back"
+		color="0 0.3 0"
+		xyz="0 -0.4 0"
+		rpy="1.570796326794896 0 3.141592653589793"/>
+	<xacro:rim_macro
+		name="right"
+		color="0 0 0.3"
+		xyz="0.3464101615 0.2 0"
+		rpy="1.570796326794896 0 -1.047197551196597"/> -->
 
 	<xacro:rim_macro
 		name="left"
 		color="0.3 0 0"
-		xyz="0.236282 0.260128 0"
-		rpy="1.570796326794896 0 -2.094399"/>
+		xyz="0.2 0.3464101615 0"
+		rpy="1.570796326794896 0 -0.523599"/>
 	<xacro:rim_macro
 		name="back"
 		color="0 0.3 0"
-		xyz="-0.31 0.08 0"
-		rpy="1.570796326794896 0 0"/>
+		xyz="-0.4 0 0"
+		rpy="1.570796326794896 0 1.5708"/>
 	<xacro:rim_macro
 		name="right"
 		color="0 0 0.3"
-		xyz="0.067718 -0.307128 0"
-		rpy="1.570796326794896 0 -4.18879"/>
+		xyz="0.2 -0.3464101615 0"
+		rpy="1.570796326794896 0 -2.61799"/>
 
 	<gazebo reference="base_link">
     		<material>Gazebo/White</material>
