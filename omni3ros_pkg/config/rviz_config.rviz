@@ -30,7 +30,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: LaserScan Merged
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -82,7 +82,7 @@ Visualization Manager:
       Max Intensity: 0
       Min Color: 0; 0; 0
       Min Intensity: 0
-      Name: LaserScan
+      Name: LaserScan Merged
       Position Transformer: XYZ
       Queue Size: 10
       Selectable: true
@@ -94,6 +94,66 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 0
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: LaserScan Left
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Flat Squares
+      Topic: /scan_left
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 0
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: LaserScan Right
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Flat Squares
+      Topic: /scan_right
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
@@ -118,6 +178,11 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        chair_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         laser_frame:
           Alpha: 1
           Show Axes: false
@@ -275,8 +340,10 @@ Visualization Manager:
           Value: false
         camera_frame_optical:
           Value: false
+        chair_frame:
+          Value: true
         laser_frame:
-          Value: false
+          Value: true
         map:
           Value: true
         odom:
@@ -343,64 +410,67 @@ Visualization Manager:
       Show Names: true
       Tree:
         map:
-          odom:
-            base_link:
-              camera_frame:
-                camera_frame_optical:
-                  {}
-              laser_frame:
+          {}
+        odom:
+          base_link:
+            camera_frame:
+              camera_frame_optical:
                 {}
-              rim_back_link:
-                roller_e_rim_back_link:
-                  {}
-                roller_n_rim_back_link:
-                  {}
-                roller_ne_rim_back_link:
-                  {}
-                roller_nw_rim_back_link:
-                  {}
-                roller_s_rim_back_link:
-                  {}
-                roller_se_rim_back_link:
-                  {}
-                roller_sw_rim_back_link:
-                  {}
-                roller_w_rim_back_link:
-                  {}
-              rim_left_link:
-                roller_e_rim_left_link:
-                  {}
-                roller_n_rim_left_link:
-                  {}
-                roller_ne_rim_left_link:
-                  {}
-                roller_nw_rim_left_link:
-                  {}
-                roller_s_rim_left_link:
-                  {}
-                roller_se_rim_left_link:
-                  {}
-                roller_sw_rim_left_link:
-                  {}
-                roller_w_rim_left_link:
-                  {}
-              rim_right_link:
-                roller_e_rim_right_link:
-                  {}
-                roller_n_rim_right_link:
-                  {}
-                roller_ne_rim_right_link:
-                  {}
-                roller_nw_rim_right_link:
-                  {}
-                roller_s_rim_right_link:
-                  {}
-                roller_se_rim_right_link:
-                  {}
-                roller_sw_rim_right_link:
-                  {}
-                roller_w_rim_right_link:
-                  {}
+            chair_frame:
+              {}
+            laser_frame:
+              {}
+            rim_back_link:
+              roller_e_rim_back_link:
+                {}
+              roller_n_rim_back_link:
+                {}
+              roller_ne_rim_back_link:
+                {}
+              roller_nw_rim_back_link:
+                {}
+              roller_s_rim_back_link:
+                {}
+              roller_se_rim_back_link:
+                {}
+              roller_sw_rim_back_link:
+                {}
+              roller_w_rim_back_link:
+                {}
+            rim_left_link:
+              roller_e_rim_left_link:
+                {}
+              roller_n_rim_left_link:
+                {}
+              roller_ne_rim_left_link:
+                {}
+              roller_nw_rim_left_link:
+                {}
+              roller_s_rim_left_link:
+                {}
+              roller_se_rim_left_link:
+                {}
+              roller_sw_rim_left_link:
+                {}
+              roller_w_rim_left_link:
+                {}
+            rim_right_link:
+              roller_e_rim_right_link:
+                {}
+              roller_n_rim_right_link:
+                {}
+              roller_ne_rim_right_link:
+                {}
+              roller_nw_rim_right_link:
+                {}
+              roller_s_rim_right_link:
+                {}
+              roller_se_rim_right_link:
+                {}
+              roller_sw_rim_right_link:
+                {}
+              roller_w_rim_right_link:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 0.699999988079071
@@ -768,7 +838,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 9.90468978881836
+      Distance: 18.99110984802246
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -776,17 +846,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 6.286065101623535
-        Y: 2.736750364303589
-        Z: -0.19523409008979797
+        X: 0.4266948401927948
+        Y: -0.6622065305709839
+        Z: -2.7334659099578857
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.2547971308231354
+      Pitch: 1.5097960233688354
       Target Frame: <Fixed Frame>
-      Yaw: 3.8254239559173584
+      Yaw: 3.165419578552246
     Saved: ~
 Window Geometry:
   Displays:
