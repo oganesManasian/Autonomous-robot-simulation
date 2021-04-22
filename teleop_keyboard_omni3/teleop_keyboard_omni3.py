@@ -34,7 +34,7 @@ space - stop
 
 anything else : stop
 
-q/z : increase/decrease max speeds by 10%
+f/v : increase/decrease max speeds by 10%
 
 CTRL-C to quit
 """
@@ -76,8 +76,8 @@ MOVE_DIRECTION2TWIST = {
 }
 
 SPEED_BINDINGS={
-        'q':1.1,
-        'z':.9,
+        'f':1.1,
+        'v':.9,
     }
 
 def getKey():
