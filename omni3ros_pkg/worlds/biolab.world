@@ -8470,15 +8470,15 @@
         <enable_wind>0</enable_wind>
       </link>
     </actor>
-    <!-- <gui fullscreen='0'>
+    <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose>5.74201 0.545373 24.2501 -0 1.47779 1.60857</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
-    </gui> -->
+    </gui>
     <!-- Follow the robot -->
-    <gui fullscreen='0'> 
+    <!-- <gui fullscreen='0'> 
       <camera name="user_camera">
         <track_visual>
           <name>open_base</name>
@@ -8488,7 +8488,7 @@
           <inherit_yaw>true</inherit_yaw>
         </track_visual>
       </camera>
-    </gui>
+    </gui> -->
     <model name='ball_bearing_0'>
       <link name='link'>
         <pose>0 0 0.003 0 -0 0</pose>
