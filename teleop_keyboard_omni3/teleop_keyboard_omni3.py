@@ -28,8 +28,11 @@ z   x   c
 
 t - rotate clockwise
 r - rotate backwards
-v - drift facing right
-b - drift facing left
+k - turn left
+l - turn right
+, - drift facing right
+. - drift facing left
+
 space - stop
 
 anything else : stop
@@ -53,8 +56,11 @@ MOVE_BINDINGS = {
 
     'r':"COUNTER_CLOCKWISE",
     't':"CLOCKWISE",
-    'v':"DRIFT_FACING_RIGHT",
-    'b':"DRIFT_FACING_LEFT",
+
+    'k':"TURN_LEFT",
+    'l':"TURN_RIGHT",
+    ',':"DRIFT_FACING_RIGHT",
+    '.':"DRIFT_FACING_LEFT",
 }
 
 # TWIST here is represented as (vx, vy, vth) (Usually Twist is ((vx, vy, vz), (pitch, roll, yaw)) )
@@ -68,10 +74,13 @@ MOVE_DIRECTION2TWIST = {
     "BACK": (-1, 0, 0),
     "BACKWARD_RIGHT": (-1, -1, 0),
 
-    "COUNTER_CLOCKWISE": (0, 0, 1),
-    "CLOCKWISE": (0, 0, -1),
-    "DRIFT_FACING_RIGHT": (1, 1, -1),
-    "DRIFT_FACING_LEFT": (1, -1, 1),
+    "COUNTER_CLOCKWISE": (0, 0, 0.3),
+    "CLOCKWISE": (0, 0, -0.3),
+
+    "TURN_LEFT": (0.5, 0, 0.2),
+    "TURN_RIGHT": (0.5, 0, -0.2),
+    "DRIFT_FACING_RIGHT": (0.5, 1, -0.1),
+    "DRIFT_FACING_LEFT": (0.5, -1, 0.1),
 
 }
 
