@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="open_base">
 
-	<xacro:include filename="$(find omni3ros_pkg)/urdf/model/rim.urdf.xacro"/>
+	<xacro:include filename="$(find omni3ros_pkg)/urdf/model_ver2/rim.urdf.xacro"/>
 
 	<xacro:arg name="sonar" default="false"/>
 	<xacro:arg name="lidar" default="true"/>
@@ -20,7 +20,7 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="package://omni3ros_pkg/mesh/model/base.stl"/>
+				<mesh filename="package://omni3ros_pkg/mesh/model_ver2/base.stl"/>
 			</geometry>
 			<material name="base_material">
 				<color rgba="1 1 1 1"/>
@@ -28,26 +28,10 @@
 		</visual>
 		<collision>
 			<geometry>
-				<mesh filename="package://omni3ros_pkg/mesh/model/base.stl"/>
+				<mesh filename="package://omni3ros_pkg/mesh/model_ver2/base.stl"/>
 			</geometry>
 		</collision>
 	</link>
-<!-- 
-	<xacro:rim_macro
-		name="left"
-		color="0.3 0 0"
-		xyz="-0.3464101615 0.2 0"
-		rpy="1.570796326794896 0 1.047197551196597"/>
-	<xacro:rim_macro
-		name="back"
-		color="0 0.3 0"
-		xyz="0 -0.4 0"
-		rpy="1.570796326794896 0 3.141592653589793"/>
-	<xacro:rim_macro
-		name="right"
-		color="0 0 0.3"
-		xyz="0.3464101615 0.2 0"
-		rpy="1.570796326794896 0 -1.047197551196597"/> -->
 
 	<xacro:rim_macro
 		name="left"

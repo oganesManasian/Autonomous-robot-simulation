@@ -12,7 +12,7 @@
 	</include>	
 	
 	<!-- Spawn the urdf model -->
-	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find omni3ros_pkg)/urdf/model/main.urdf.xacro'" />
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find omni3ros_pkg)/urdf/model_ver2/main.urdf.xacro'" />
 
 		
 	<arg name="x" default="0.0" />
