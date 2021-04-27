@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:include filename="$(find omni3ros_pkg)/urdf/model/roller.urdf.xacro"/>
+<xacro:include filename="$(find omni3ros_pkg)/urdf/model_ver2/roller.urdf.xacro"/>
 
 <xacro:macro
 	name="rim_macro"
@@ -22,7 +22,7 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="package://omni3ros_pkg/mesh/model/rim.stl"/>
+					<mesh filename="package://omni3ros_pkg/mesh/model_ver2/rim.stl"/>
 				</geometry>
 				<material name="rim_${name}_material">
 					<color rgba="${color} 1"/>
@@ -30,7 +30,7 @@
 			</visual>
 			<collision>
 				<geometry>
-					<mesh filename="package://omni3ros_pkg/mesh/model/rim.stl"/>
+					<mesh filename="package://omni3ros_pkg/mesh/model_ver2/rim.stl"/>
 				</geometry>
 			</collision>
 			

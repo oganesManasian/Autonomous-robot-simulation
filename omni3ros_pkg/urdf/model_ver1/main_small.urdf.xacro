@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="open_base">
 
-	<xacro:include filename="$(find omni3ros_pkg)/urdf/model_small/rim_small.urdf.xacro"/>
+	<xacro:include filename="$(find omni3ros_pkg)/urdf/model_ver1/rim_small.urdf.xacro"/>
 
 	<xacro:arg name="sonar" default="false"/>
 	<xacro:arg name="lidar" default="true"/>
@@ -22,7 +22,7 @@
 			</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="package://omni3ros_pkg/mesh/model_small/base_small.stl"/>
+				<mesh filename="package://omni3ros_pkg/mesh/model_ver1/base_small.stl"/>
 
 			</geometry>
 			<material name="base_material">
@@ -31,7 +31,7 @@
 		</visual>
 		<collision>
 			<geometry>
-				<mesh filename="package://omni3ros_pkg/mesh/model_small/base_small.stl"/>
+				<mesh filename="package://omni3ros_pkg/mesh/model_ver1/base_small.stl"/>
 			</geometry>
 		</collision>
 

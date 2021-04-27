@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="open_base">
 
-	<xacro:include filename="$(find omni3ros_pkg)/urdf/model/rim.urdf.xacro"/>
-	<xacro:include filename="$(find omni3ros_pkg)/urdf/model/laser.urdf.xacro"/>
+	<xacro:include filename="$(find omni3ros_pkg)/urdf/model_ver2/rim.urdf.xacro"/>
+	<xacro:include filename="$(find omni3ros_pkg)/urdf/model_ver2/laser.urdf.xacro"/>
 
 	<xacro:arg name="sonar" default="false"/>
 	<xacro:arg name="lidar" default="true"/>
@@ -21,7 +21,7 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="package://omni3ros_pkg/mesh/model/base.stl"/>
+				<mesh filename="package://omni3ros_pkg/mesh/model_ver2/base.stl"/>
 			</geometry>
 			<material name="base_material">
 				<color rgba="1 1 1 1"/>
@@ -29,7 +29,7 @@
 		</visual>
 		<collision>
 			<geometry>
-				<mesh filename="package://omni3ros_pkg/mesh/model/base.stl"/>
+				<mesh filename="package://omni3ros_pkg/mesh/model_ver2/base.stl"/>
 			</geometry>
 		</collision>
 	</link>
@@ -101,7 +101,7 @@
 		<visual>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-				<mesh filename="package://omni3ros_pkg/mesh/model/office_chair.stl"/>
+				<mesh filename="package://omni3ros_pkg/mesh/model_ver2/office_chair.stl"/>
 			</geometry>
 		</visual>
 
