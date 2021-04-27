@@ -36,17 +36,17 @@
 	<xacro:rim_macro
 		name="left"
 		color="0.3 0 0"
-		xyz="0.2 0.3464101615 0"
+		xyz="0.12 0.207864 0"
 		rpy="1.570796326794896 0 -0.523599"/>
 	<xacro:rim_macro
 		name="back"
 		color="0 0.3 0"
-		xyz="-0.4 0 0"
+		xyz="-0.24 0 0"
 		rpy="1.570796326794896 0 1.5708"/>
 	<xacro:rim_macro
 		name="right"
 		color="0 0 0.3"
-		xyz="0.2 -0.3464101615 0"
+		xyz="0.12 -0.207864 0"
 		rpy="1.570796326794896 0 -2.61799"/>
 
 	<gazebo reference="base_link">
