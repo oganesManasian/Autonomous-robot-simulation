@@ -44,28 +44,30 @@ Simulation of autonomous omnidirectional operation in environments of varying co
 5.  `source ~/catkin_ws/devel/setup.bash`
 6.  `source ~/.bashrc`
 
-I Scenario: SLAM (world_name - environment to use)
+I Scenario: SLAM (world_name - name of the environment to save)
 
-7. `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch world:=world_name`- launch model simulation (Gazebo + Rviz) with controllers
-8. `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- send Twist control commands to model with keyboard
-9. `rosrun teleop_keyboard_omni3 wheel_controller.py`- convert Twist control commands to motor velocity commands
-10. `rosrun teleop_keyboard_omni3 odom_publisher.py` - run odometry broadcasting
-11. `roslaunch omni3ros_pkg gmapping.launch`- launch gmapping module o build the map
-12. `rosrun map_server map_saver -f world_name` - save map of environment
-13. `roslaunch omni3ros_pkg robot_localization.launch` - Run EKF wheel odometry and IMU sensor fusion
-14. `roslaunch omni3ros_pkg move_base.launch` - For autonomous navigation based on goal set with use of Rviz
+7. `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch world:=world_name`- Launch model simulation (Gazebo + Rviz) with controllers
+8. `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- Send Twist control commands to model with keyboard
+9. `rosrun teleop_keyboard_omni3 wheel_controller.py`- Convert Twist control commands to motor velocity commands
+10. `rosrun teleop_keyboard_omni3 odom_publisher.py` - Run odometry broadcasting
+11. `roslaunch omni3ros_pkg robot_localization.launch` - Run EKF wheel odometry and IMU sensor fusion
+12. `roslaunch ira_laser_tools laserscan_multi_merger.launch` - Run merger of laserscans from two lidars
+13. `roslaunch omni3ros_pkg gmapping.launch`- Launch gmapping module o build the map
+14. `rosrun map_server map_saver -f world_name` - Save map of environment
+15. `roslaunch omni3ros_pkg move_base.launch` - Rub autonomous navigation based on goal set with use of Rviz
+16. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf 
+
+II Scenario: Localization (world_name - name of the environment to use)
+
+7. `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch world:=world_name`- Launch model simulation (Gazebo + Rviz) with controllers
+8. `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- Send Twist control commands to model with keyboard
+9. `rosrun teleop_keyboard_omni3 wheel_controller.py`- Convert Twist control commands to motor velocity commands
+10. `rosrun teleop_keyboard_omni3 odom_publisher.py` - Run odometry broadcasting
+11. `roslaunch omni3ros_pkg robot_localization.launch` - Run EKF wheel odometry and IMU sensor fusion
+12. `roslaunch ira_laser_tools laserscan_multi_merger.launch` - Run merger of laserscans from two lidars
+13. `roslaunch omni3ros_pkg amcl.launch world:=world_name` - Run AMCL localization
+14. `roslaunch omni3ros_pkg move_base.launch` - Run autonomous navigation based on goal set with use of Rviz
 15. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf 
-
-II Scenario: Localization (world_name - environment to use)
-
-7. `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch world:=world_name`- launch model simulation (Gazebo + Rviz) with controllers
-8. `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- send Twist control commands to model with keyboard
-9. `rosrun teleop_keyboard_omni3 wheel_controller.py`- convert Twist control commands to motor velocity commands
-10. `rosrun teleop_keyboard_omni3 odom_publisher.py` - run odometry broadcasting
-11. `roslaunch omni3ros_pkg amcl.launch world:=world_name` - Run AMCL localization
-12. `roslaunch omni3ros_pkg robot_localization.launch` - Run EKF wheel odometry and IMU sensor fusion
-13. `roslaunch omni3ros_pkg move_base.launch` - For autonomous navigation based on goal set with use of Rviz
-14. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf 
 
 ## Autonomous navigation
 Goal poses can be set with use of Rviz. 

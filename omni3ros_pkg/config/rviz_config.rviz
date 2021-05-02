@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /LaserScan Merged1
         - /TF1/Frames1
         - /TF1/Tree1
         - /Odometry (EKF)1/Shape1
@@ -67,14 +68,14 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
+        Max Value: 0.6000000238418579
+        Min Value: 0.6000000238418579
         Value: true
       Axis: Z
       Channel Name: intensity
       Class: rviz/LaserScan
       Color: 255; 255; 255
-      Color Transformer: Intensity
+      Color Transformer: AxisColor
       Decay Time: 0
       Enabled: true
       Invert Rainbow: false
@@ -87,7 +88,7 @@ Visualization Manager:
       Queue Size: 10
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.009999999776482582
+      Size (m): 0.019999999552965164
       Style: Flat Squares
       Topic: /scan
       Unreliable: false
@@ -183,7 +184,16 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        laser_frame:
+        laser_frame_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        laser_frame_merged:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        laser_frame_right:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -342,7 +352,11 @@ Visualization Manager:
           Value: false
         chair_frame:
           Value: true
-        laser_frame:
+        laser_frame_left:
+          Value: true
+        laser_frame_merged:
+          Value: true
+        laser_frame_right:
           Value: true
         map:
           Value: true
@@ -410,67 +424,70 @@ Visualization Manager:
       Show Names: true
       Tree:
         map:
-          {}
-        odom:
-          base_link:
-            camera_frame:
-              camera_frame_optical:
+          odom:
+            base_link:
+              camera_frame:
+                camera_frame_optical:
+                  {}
+              chair_frame:
                 {}
-            chair_frame:
-              {}
-            laser_frame:
-              {}
-            rim_back_link:
-              roller_e_rim_back_link:
+              laser_frame_left:
                 {}
-              roller_n_rim_back_link:
+              laser_frame_merged:
                 {}
-              roller_ne_rim_back_link:
+              laser_frame_right:
                 {}
-              roller_nw_rim_back_link:
-                {}
-              roller_s_rim_back_link:
-                {}
-              roller_se_rim_back_link:
-                {}
-              roller_sw_rim_back_link:
-                {}
-              roller_w_rim_back_link:
-                {}
-            rim_left_link:
-              roller_e_rim_left_link:
-                {}
-              roller_n_rim_left_link:
-                {}
-              roller_ne_rim_left_link:
-                {}
-              roller_nw_rim_left_link:
-                {}
-              roller_s_rim_left_link:
-                {}
-              roller_se_rim_left_link:
-                {}
-              roller_sw_rim_left_link:
-                {}
-              roller_w_rim_left_link:
-                {}
-            rim_right_link:
-              roller_e_rim_right_link:
-                {}
-              roller_n_rim_right_link:
-                {}
-              roller_ne_rim_right_link:
-                {}
-              roller_nw_rim_right_link:
-                {}
-              roller_s_rim_right_link:
-                {}
-              roller_se_rim_right_link:
-                {}
-              roller_sw_rim_right_link:
-                {}
-              roller_w_rim_right_link:
-                {}
+              rim_back_link:
+                roller_e_rim_back_link:
+                  {}
+                roller_n_rim_back_link:
+                  {}
+                roller_ne_rim_back_link:
+                  {}
+                roller_nw_rim_back_link:
+                  {}
+                roller_s_rim_back_link:
+                  {}
+                roller_se_rim_back_link:
+                  {}
+                roller_sw_rim_back_link:
+                  {}
+                roller_w_rim_back_link:
+                  {}
+              rim_left_link:
+                roller_e_rim_left_link:
+                  {}
+                roller_n_rim_left_link:
+                  {}
+                roller_ne_rim_left_link:
+                  {}
+                roller_nw_rim_left_link:
+                  {}
+                roller_s_rim_left_link:
+                  {}
+                roller_se_rim_left_link:
+                  {}
+                roller_sw_rim_left_link:
+                  {}
+                roller_w_rim_left_link:
+                  {}
+              rim_right_link:
+                roller_e_rim_right_link:
+                  {}
+                roller_n_rim_right_link:
+                  {}
+                roller_ne_rim_right_link:
+                  {}
+                roller_nw_rim_right_link:
+                  {}
+                roller_s_rim_right_link:
+                  {}
+                roller_se_rim_right_link:
+                  {}
+                roller_sw_rim_right_link:
+                  {}
+                roller_w_rim_right_link:
+                  {}
       Update Interval: 0
       Value: true
     - Alpha: 0.699999988079071
@@ -838,7 +855,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 18.99110984802246
+      Distance: 10.022215843200684
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -846,17 +863,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.4266948401927948
-        Y: -0.6622065305709839
-        Z: -2.7334659099578857
+        X: 0.670406699180603
+        Y: 0.28603827953338623
+        Z: -2.206620216369629
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.5097960233688354
+      Pitch: 1.5697963237762451
       Target Frame: <Fixed Frame>
-      Yaw: 3.165419578552246
+      Yaw: 4.66042423248291
     Saved: ~
 Window Geometry:
   Displays:
