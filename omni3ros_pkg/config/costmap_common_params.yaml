@@ -19,7 +19,7 @@ subscribe_to_updates: true
 observation_sources: laser_scan_sensor
 # This parameter define properties of used sensor, these are: sensor_frame - coordinate frame tied to sensor; data_type - type of message published by sensor; 
 # topic - name of topic where sensor data is published; marking - true if sensor can be used to mark area as occupied; clearing - true if sensor can be used to mark area as clear
-laser_scan_sensor: {sensor_frame: laser_frame, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+laser_scan_sensor: {sensor_frame: laser_frame_merged, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
 # This parameter defines coordinate frame tied to occupancy grid map.
 global_frame: map
 # This parameter defines coordinate frame tied to robot.
