@@ -15,22 +15,27 @@ Simulation of autonomous omnidirectional operation in environments of varying co
   <img src="images/room.png">
   <br/>
 </p>
-2. biolab - lab with 8 rooms and long hall. Static environment with dynamic object (person).
+2. big_room - big room with lots of small static obstacles
+<p align="center">
+  <img src="images/big_room.png">
+  <br/>
+</p>
+3. biolab - lab with 8 rooms and long hall. Static environment with dynamic object (person).
 <p align="center">
   <img src="images/biolab.png">
   <br/>
 </p>
-3. airport terminal - big open space. Static environment with dynamic objects: box and person.
+4. airport terminal - big open space. Static environment with dynamic objects: box and person.
 <p align="center">
   <img src="images/airport_terminal.png">
   <br/>
 </p>
-4. metro - two big open spaces with two halls connecting them. Dynamic envoronment (added standing people in one of halls which are not drawn on the map) with dynamic objects: 4 people in 1st space and 2 boxes in 2nd space
+5. metro - two big open spaces with two halls connecting them. Dynamic envoronment (added standing people in one of halls which are not drawn on the map) with dynamic objects: 4 people in 1st space and 2 boxes in 2nd space
 <p align="center">
   <img src="images/metro.png">
   <br/>
 </p>
-5. conference_room - small and big room with tight placed furniture. Static environment with dynamic object (person).  
+6. conference_room - small and big room with tight placed furniture. Static environment with dynamic object (person).  
 <p align="center">
   <img src="images/conference_room.png">
   <br/>
