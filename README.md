@@ -74,6 +74,16 @@ II Scenario: Localization (world_name - name of the environment to use)
 14. `roslaunch omni3ros_pkg move_base.launch` - Run autonomous navigation based on goal set with use of Rviz
 15. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf 
 
+III Scenario: Test of loval planners (in this case groubd truth position data from simulator is used for localization)
+7. `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch world:=world_name`- Launch model simulation (Gazebo + Rviz) with controllers
+8. `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- Send Twist control commands to model with keyboard
+9. `rosrun teleop_keyboard_omni3 wheel_controller.py`- Convert Twist control commands to motor velocity commands
+10. `roslaunch ira_laser_tools laserscan_multi_merger.launch` - Run merger of laserscans from two lidars
+11. `rosrun tests publish_true_position.py` - Publish device's position based on simulator's data (odom -> base_link transform)
+12. `roslaunch omni3ros_pkg amcl_fake.launch world:=world_name` - Publish constant position on the map (map -> odom transform)
+13. `roslaunch omni3ros_pkg move_base.launch` - Run autonomous navigation based on goal set with use of Rviz
+14. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf 
+
 ## Autonomous navigation
 Goal poses can be set with use of Rviz. 
 
