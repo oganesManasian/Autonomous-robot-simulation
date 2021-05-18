@@ -78,13 +78,13 @@ III Scenario: Test of local planners (in this case ground truth position data fr
 7. `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch world:=world_name`- Launch model simulation (Gazebo + Rviz) with controllers
 8. `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- Send Twist control commands to model with keyboard
 9. `rosrun teleop_keyboard_omni3 wheel_controller.py`- Convert Twist control commands to motor velocity commands
-10. `roslaunch ira_laser_tools laserscan_multi_merger.launch` - Run merger of laserscans from two lidars (Optional)
+10. `roslaunch ira_laser_tools laserscan_multi_merger.launch` - Run merger of laserscans from two lidars
 11. `rosrun tests publish_true_position.py` - Publish device's position based on simulator's data (odom -> base_link transform)
 12. `roslaunch omni3ros_pkg amcl_fake.launch world:=world_name` - Publish constant position on the map (map -> odom transform)
 13. `roslaunch omni3ros_pkg move_base.launch` - Run autonomous navigation based on goal set with use of Rviz
 14. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf (Optional)
 
-III Scenario: Test of localization (in this case ground truth position data from simulator is used for comparison)
+IV Scenario: Test of localization (in this case ground truth position data from simulator is used for comparison)
 7. `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch world:=world_name`- Launch model simulation (Gazebo + Rviz) with controllers
 8. `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- Send Twist control commands to model with keyboard
 9. `rosrun teleop_keyboard_omni3 wheel_controller.py`- Convert Twist control commands to motor velocity commands
