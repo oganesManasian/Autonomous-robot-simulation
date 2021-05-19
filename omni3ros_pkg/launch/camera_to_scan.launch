@@ -1,0 +1,23 @@
+
+<!-- Run nodes related to laserscans: laserscan merger, point cloud to laserscan transformer -->
+<launch>
+
+	<!-- Camera point cloud to laserscan -->
+	<node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_node" output="screen" >
+		<remap from="cloud_in" to="camera/depth/points" />
+		<remap from="scan" to="scan_camera" />
+		<param name="target_frame" value="camera_frame" />
+		<param name="range_min" value="0.5" />
+		<!-- A little less than cut off range of camera's point cloud. Using this trick we are able to discriminate point cloud points which touched object's surface -->
+		<param name="range_max" value="2.5" />
+
+		<!-- Looks like we don't need these parameters so far -->
+		<!-- <param name="max_height" value="$(arg max_height)" />
+		<param name="min_height" value="$(arg min_height)" />
+		<param name="angle_max" value="$(arg angle_max)" />
+		<param name="angle_min" value="$(arg angle_min)" />
+		<param name="use_inf" value="true" /> -->
+	</node>
+
+
+</launch>

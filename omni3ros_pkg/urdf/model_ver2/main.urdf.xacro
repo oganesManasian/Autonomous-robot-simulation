@@ -212,7 +212,7 @@
 		<joint name="camera_frame_joint" type="fixed">
 			<axis xyz="0 1 0" />
 			<!-- Positive pitch so camera looks downwards to see ground obstacles -->
-			<origin xyz="0 0 .6" rpy="0 0.25 0"/> 
+			<origin xyz="0.2 -0.15 .6" rpy="0 0.25 0"/> 
 			<parent link="base_link"/>
 			<child link="camera_frame"/>
 		</joint>
@@ -281,7 +281,8 @@
 					<pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
 					<frameName>camera_frame_optical</frameName>
 					<pointCloudCutoff>0.5</pointCloudCutoff>
-					<pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+					<!-- We cut point cloud also when converting point cloud to laserscans (parameters are in camera_to_scan.launch) -->
+					<pointCloudCutoffMax>3.5</pointCloudCutoffMax>
 					<distortionK1>0</distortionK1>
 					<distortionK2>0</distortionK2>
 					<distortionK3>0</distortionK3>
