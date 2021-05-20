@@ -11,6 +11,7 @@ catkin_install_python(PROGRAMS
    visualize_velocity_profile.py
    publish_true_position.py
    assess_localization.py
+   assess_local_path_planning.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

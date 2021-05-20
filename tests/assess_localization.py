@@ -11,7 +11,7 @@ from nav_msgs.msg import Odometry
 import tf
 import numpy as np
 
-GROUND_TRUTH_POSITION_TOPIC = "/base_pose_ground_truth"
+GROUND_TRUTH_ODOMETRY_TOPIC = "/base_pose_ground_truth"
 ASSESING_RATE = 2 # Twice per second
 
 ground_truth_odometry = None
@@ -33,7 +33,7 @@ def normalize_angle(angle):
 rospy.init_node('localization_assessor')
 
 tf_listener = tf.TransformListener() # Listen EKF + AMCL position estimations
-rospy.Subscriber(GROUND_TRUTH_POSITION_TOPIC, Odometry, update_gt_pose) # Listen ground truth position
+rospy.Subscriber(GROUND_TRUTH_ODOMETRY_TOPIC, Odometry, update_gt_pose) # Listen ground truth position
 
 differences = [] # list of (difference_x, difference_y, difference_theta) tuples calculated ASSESING_RATE times in a second
 
