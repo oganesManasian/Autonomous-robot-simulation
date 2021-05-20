@@ -1,4 +1,11 @@
 GlobalPlanner:
   # If true, use dijkstra's algorithm. Otherwise, A*. We may need A* if we need to speed up computations since A* considers much less cells. 
   # Possible cons here is that solution could be not optimal.
+
+  # Option 1
+  # use_dijkstra: false
+  # use_grid_path: true
+
+  # Option 2
   use_dijkstra: true
+  use_grid_path: false

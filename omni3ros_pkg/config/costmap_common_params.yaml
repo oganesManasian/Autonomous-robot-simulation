@@ -5,10 +5,11 @@ raytrace_range: 8.5
 # This parameter defines coordinates of robot outline, this will considered during collision detecting. [[right_forward_x, right_forward_y], right_back_xy, left_back_xy, left_forward_xy]
 # footprint: [[0.12, 0.14], [0.12, -0.14], [-0.12, -0.14], [-0.12, 0.14]] # For small model
 footprint: [[0.45, 0.45], [0.45, -0.45], [-0.45, -0.45], [-0.45, 0.45]]
+footprint_padding: 0
 
 # The inflation radius should be set to the maximum distance from obstacles at which a cost should be incurred. 
 # For example, setting the inflation radius at 0.55 meters means that the robot will treat all paths that stay 0.55 meters or more away from obstacles as having equal obstacle cost.
-inflation_radius: 0.1
+# inflation_radius: 0.1 # Defined in local and global costmap param files
 
 
 # This parameter defines topic where occupancy grid is published.
