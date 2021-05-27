@@ -22,18 +22,21 @@ NEW_GOAL_TOPIC = "/move_base_simple/goal"
 GOAL_RESULT_TOPIC = "/move_base/status"
 EXPERIMENT_RESULT_FOLDER = "experiments"
 EXPERIMENT_FILENAME = "path_planning_data_"
-EXPERIMENT_NAME = "rollout planner"
+EXPERIMENT_NAME = "Umknown experiment"
+# EXPERIMENT_NAME = "Rollout planner, no obstacles"
+# EXPERIMENT_NAME = "Rollout planner, static obstacles"
+# EXPERIMENT_NAME = "Rollout planner, dynamic obstacles"
+# EXPERIMENT_NAME = "DWA planner, no obstacles"
+# EXPERIMENT_NAME = "DWA planner, static obstacles"
+# EXPERIMENT_NAME = "DWA planner, dynamic obstacles"
+# EXPERIMENT_NAME = "TEB planner, no obstacles"
+# EXPERIMENT_NAME = "TEB planner, static obstacles"
+# EXPERIMENT_NAME = "TEB planner, dynamic obstacles"
 
 ground_truth_odometry = []
 collect_data = False # Collect only when navigating to the goal (between "goal is sent" and "goal is reached" messages)
 start_time = None
 end_time = None
-    
-def sort_human(l):
-    convert = lambda text: float(text) if text.isdigit() else text
-    alphanum = lambda key: [convert(c) for c in re.split('([-+]?[0-9]*\.?[0-9]*)', key)]
-    l.sort(key=alphanum)
-    return l
 
 def update_gt_odometry(data):
     if collect_data:
@@ -83,8 +86,10 @@ def save_data():
 
     if os.path.isdir(EXPERIMENT_RESULT_FOLDER):
         existing_experiments = os.listdir(EXPERIMENT_RESULT_FOLDER)
+        existing_experiments = [filename for filename in os.listdir(EXPERIMENT_RESULT_FOLDER) if filename.startswith(EXPERIMENT_FILENAME)]
+        
         if existing_experiments:
-            last_experiment_filename = sort_human(existing_experiments)[-1]
+            last_experiment_filename = sorted(existing_experiments, key=lambda filename: int(filename.split(".")[0].split("_")[-1]))[-1] # Sort by experiment index
             counter = int(last_experiment_filename.split(".")[0].split("_")[-1]) + 1
         else:
             counter = 1
