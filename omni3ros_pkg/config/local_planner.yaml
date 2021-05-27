@@ -1,18 +1,21 @@
 
 TrajectoryPlannerROS:
   min_vel_x: -0.5
-  max_vel_x: 1.4
+  max_vel_x: 5.0
 
   max_vel_theta: 0.75
   min_vel_theta: -0.75
   min_in_place_vel_theta: 0.75
 
-  acc_lim_x: 2.5
-  acc_lim_Y: 1
-  acc_lim_theta: 0.25
+#   acc_lim_x: 2.5
+#   acc_lim_Y: 1
+#   acc_lim_theta: 0.25
+  acc_lim_x: 10
+  acc_lim_Y: 10
+  acc_lim_theta: 5
 
   # The following parameters are only used if holonomic_robot is set to true, default: [-0.3, -0.1, 0.1, 0.3]
-  y_vels: [-0.5, -0.3, -0.1, 0.1, 0.3, 0.5]
+  y_vels: [-1.5, -1, -0.5, -0.3, -0.1, 0.1, 0.3, 0.5, 1, 1.5]
 
   holonomic_robot: true
 
@@ -22,8 +25,8 @@ TrajectoryPlannerROS:
   xy_goal_tolerance: 0.15
   yaw_goal_tolerance: 0.25
 
-  vx_samples: 10 # Default 3
-  vtheta_samples: 20 # Default 20
+  vx_samples: 30 # Default 3
+  vtheta_samples: 40 # Default 20
 
   # Whether to use the Dynamic Window Approach (DWA)_ or whether to use Trajectory Rollout (NOTE: 
   # In our experience DWA worked as well as Trajectory Rollout and is computationally less expensive. 
@@ -34,28 +37,29 @@ TrajectoryPlannerROS:
   # The amount of time to forward-simulate trajectories in seconds
   # Make sure that the minimum velocity multiplied by the sim_period is less than twice my tolerance on a goal. 
   # Otherwise, the robot will prefer to rotate in place just outside of range of its target position rather than moving towards the goal.
-  sim_time: 3
+  sim_time: 1
 
   publish_cost_grid: true
+
 
 DWAPlannerROS:
   # min_vel_x: -0.5 # In this case robot too often moves back instead of turning and moving forward
   min_vel_x: 0 
-  max_vel_x: 1.4
+  max_vel_x: 5
 
-  min_vel_y: -0.5 
-  max_vel_y: 0.5
+  min_vel_y: -5
+  max_vel_y: 5
 
   min_vel_trans: 0
-  max_vel_trans: 1.4
+  max_vel_trans: 5
 
   # The absolute value of the minimum and maximum rotational velocity for the robot in rad/s
-  min_rot_vel: 0
-  max_rot_vel: 0.75
+  min_vel_theta: 0
+  max_vel_theta: 5
   
-  acc_lim_x: 2.5
-  acc_lim_Y: 1
-  acc_lim_th: 0.25
+  acc_lim_x: 10
+  acc_lim_Y: 10
+  acc_lim_th: 10
 
   # Not such parameters in this planner
   # holonomic_robot: true
@@ -66,8 +70,10 @@ DWAPlannerROS:
   # vth samples: 20
 
   vx_samples: 20
-  vy_samples: 15
+  vy_samples: 20
   vth samples: 40
+
+  path_distance_bias: 1 # Default: 32 - descreased to tackle problrm os stucking when need to go bacwards
 
   # Possible error when robot reaches goal position
   xy_goal_tolerance: 0.15
@@ -76,7 +82,7 @@ DWAPlannerROS:
   # The amount of time to forward-simulate trajectories in seconds
   # Make sure that the minimum velocity multiplied by the sim_period is less than twice my tolerance on a goal. 
   # Otherwise, the robot will prefer to rotate in place just outside of range of its target position rather than moving towards the goal.
-  sim_time: 4
+  sim_time: 1
 
   occdist_scale: 0.1 # Increased to avoid obstacles (default: 0.01)
 
