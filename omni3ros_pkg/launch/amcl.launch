@@ -2,18 +2,11 @@
 	<!-- Run AMCL localization -->
 
   <!-- <arg name="map_file" default="$(find omni3ros_pkg)/maps/empty_room.yaml"/>  -->
-  <arg name="world" default="biolab"/>
+  <arg name="world" default="big_room"/>
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(find omni3ros_pkg)/maps/$(arg world).yaml" /> 
 
-  <!-- <arg name="map_file" default="$(find omni3ros_pkg)/maps/biolab.yaml"/> 
-
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />  -->
-
   <node pkg="amcl" type="amcl" name="amcl">
-    <!-- <remap from="scan" to="base_scan"/> -->
-
-
     <!-- Overall filter parameters -->
 
     <param name="min_particles" value="500"/>
@@ -21,12 +14,20 @@
 
     <param name="initial_pose_x" value="0.0"/> 
     <param name="initial_pose_y" value="0.0"/> 
-    <param name="initial_pose_a" value="1.57"/>
+    <param name="initial_pose_a" value="0.0"/>
+
 
     <!-- Exponential decay rate for the slow average weight filter, used in deciding when to recover by adding random poses. A good value might be 0.001. -->
     <!-- <param name="recovery_alpha_slow" value="0.0"/> -->
     <!-- Exponential decay rate for the fast average weight filter, used in deciding when to recover by adding random poses. A good value might be 0.1. -->
     <!-- <param name="recovery_alpha_fast" value="0.0"/> -->
+
+    <!-- When set to true, will reduce the resampling rate when not needed and help avoid particle deprivation. 
+    The resampling will only happen if the effective number of particles (N_eff = 1/(sum(k_i^2))) is lower 
+    than half the current number of particles. Reference: Grisetti, Giorgio, Cyrill Stachniss, and Wolfram Burgard. 
+    "Improved techniques for grid mapping with rao-blackwellized particle filters." IEEE transactions on Robotics 23.1 (2007): 34. -->
+    <param name="selective_resampling" value="false"/>
+  
 
     <!-- When set to true, AMCL will subscribe to the map topic rather than making a service call to receive its map. -->
     <param name="use_map_topic" value="false"/>
@@ -95,6 +96,9 @@
     <!-- Set this to false to prevent amcl from publishing the transform between the global frame and the odometry frame. -->
     <!-- Set to false if gmapping or robot_localization node is running -->
     <param name="tf_broadcast" value="true"/>
+
+    <!-- Increase tolerance because the computer can get quite busy  -->
+    <param name="transform_tolerance" value="1.0"/>
 
     <param name="global_frame_id" value="/map"/>
     <param name="base_frame_id" value="/base_link"/>

@@ -41,7 +41,7 @@ def publish_commands(data):
     velb = Float64(back_wheel_velocity / ROBOT_WHEEL_RADIUS)
     velr = Float64(right_wheel_velocity / ROBOT_WHEEL_RADIUS)
 
-    print("Published commands: ", vell, velb, velr)
+    print(f"Received commands: vx={vx}, vy={vy}, vth={vth}\nPublished commands: vell={vell}, velb={velb}, velr={velr}")
     PUB_LEFT.publish(vell)
     PUB_BACK.publish(velb)
     PUB_RIGHT.publish(velr)

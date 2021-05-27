@@ -38,20 +38,11 @@
     <param name="llsamplestep" value="0.01"/> 
     <param name="lasamplerange" value="0.005"/> 
     <param name="lasamplestep" value="0.005"/> 
+    <!-- Value 0 disables it, so now transform is not published. This could be used when we use ground truth odometry data from the Simulator for perfect quality mapping  -->
+    <!-- <param name="transform_publish_period" value="0"/>  -->
+    
     <!-- <remap from="scan" to="$(arg scan_topic)"/>  -->
   </node> 
- 
-<!-- Defining parameters for move_base node --> 
- 
-  <!-- <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen"> 
-    <rosparam file="$(find diff_wheeled_robot_gazebo)/param/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
-    <rosparam file="$(find diff_wheeled_robot_gazebo)/param/costmap_common_params.yaml" command="load" ns="local_costmap" /> 
-    <rosparam file="$(find diff_wheeled_robot_gazebo)/param/local_costmap_params.yaml" command="load" /> 
-    <rosparam file="$(find diff_wheeled_robot_gazebo)/param/global_costmap_params.yaml" command="load" /> 
-    <rosparam file="$(find diff_wheeled_robot_gazebo)/param/base_local_planner_params.yaml" command="load" /> 
-    <rosparam file="$(find diff_wheeled_robot_gazebo)/param/dwa_local_planner_params.yaml" command="load" /> 
-    <rosparam file="$(find diff_wheeled_robot_gazebo)/param/move_base_params.yaml" command="load" /> 
- 
-  </node>  -->
+
  
 </launch> 

@@ -37,8 +37,10 @@ if __name__== "__main__":
     rospy.init_node('odom_publisher')
 
     rospy.Subscriber("cmd_vel", Twist, update_odom)
-    odom_broadcaster = tf.TransformBroadcaster()
+
     odom_publisher = rospy.Publisher("odom", Odometry, queue_size=50)
+    if PUBLISH_TF:
+        odom_broadcaster = tf.TransformBroadcaster()
 
     # vx = vy = vth = 0 # Current speeds # Made global for now
     x = y = th = 0 # Current position

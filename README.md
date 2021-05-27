@@ -77,6 +77,7 @@ II Scenario: Localization (world_name - name of the environment to use)
 16. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf (Optional)
 
 III Scenario: Test of local planners (in this case ground truth position data from simulator is used for localization)
+
 7. `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch world:=world_name`- Launch model simulation (Gazebo + Rviz) with controllers
 8. `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- Send Twist control commands to model with keyboard
 9. `rosrun teleop_keyboard_omni3 wheel_controller.py`- Convert Twist control commands to motor velocity commands
@@ -88,6 +89,7 @@ III Scenario: Test of local planners (in this case ground truth position data fr
 15. `rosrun rqt_gui rqt_gui` - Run rqt to vilusalize node graph, topics and tf (Optional)
 
 IV Scenario: Test of localization (in this case ground truth position data from simulator is used for comparison)
+
 7. `roslaunch omni3ros_pkg gazebo_rviz_controllers.launch world:=world_name`- Launch model simulation (Gazebo + Rviz) with controllers
 8. `rosrun teleop_keyboard_omni3 teleop_keyboard_omni3.py`- Send Twist control commands to model with keyboard
 9. `rosrun teleop_keyboard_omni3 wheel_controller.py`- Convert Twist control commands to motor velocity commands

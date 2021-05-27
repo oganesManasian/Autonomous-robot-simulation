@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
 	
-	<arg name="world" default="biolab"/>
+	<arg name="world" default="big_room"/>
 
 	<!-- Launch empty world Gazebo -->
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -20,7 +20,7 @@
 	<arg name="z" default="0.2" />
 	<!-- For conference_room -->
 	<!-- <arg name="yaw" default="0" /> -->
-	<!-- For Biolab -->
+	<!-- For biolab, big_room -->
 	<arg name="yaw" default="1.57" /> 
 
 	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg yaw) -model open_base -param robot_description"/>

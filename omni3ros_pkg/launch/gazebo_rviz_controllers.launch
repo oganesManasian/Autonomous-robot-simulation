@@ -3,7 +3,7 @@
 <!-- Launch Rviz, Gazebo and controllers -->
 <launch>
 	<!-- <arg name="world" default="empty_room"/> -->
-	<arg name="world" default="biolab"/>
+	<arg name="world" default="big_room"/>
 	<!-- <arg name="world" default="airport_terminal"/> -->
 	<!-- <arg name="world" default="cafe"/> -->
 

@@ -361,69 +361,37 @@
       <static>1</static>
     </model>
     <state world_name='default'>
-      <sim_time>180 847000000</sim_time>
-      <real_time>133 672067330</real_time>
-      <wall_time>1621520588 677131768</wall_time>
-      <iterations>132857</iterations>
-      <model name='chair_1'>
-        <pose>1.62794 4.42366 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link_0'>
-          <pose>1.3212 4.22185 0.000751 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='link_1'>
-          <pose>1.326 4.22298 -0.000751 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
+      <sim_time>249 443000000</sim_time>
+      <real_time>35 955625078</real_time>
+      <wall_time>1621868258 278020777</wall_time>
+      <iterations>35796</iterations>
       <model name='chair_1_0'>
-        <pose>1.63437 3.9367 0 0 -0 0</pose>
+        <pose>1.58694 4.07173 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>1.32763 3.73488 0.000751 0 -0 0</pose>
+          <pose>1.2802 3.86992 0.000751 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='link_1'>
-          <pose>1.33243 3.73601 -0.000751 0 -0 0</pose>
+          <pose>1.285 3.87105 -0.000751 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='chair_1_1'>
-        <pose>1.63644 3.44258 0 0 -0 0</pose>
+        <pose>1.6049 3.56936 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>1.3297 3.24077 0.000751 0 -0 0</pose>
+          <pose>1.29816 3.36754 0.000751 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='link_1'>
-          <pose>1.33449 3.2419 -0.000751 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='chair_1_2'>
-        <pose>1.64195 2.95878 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link_0'>
-          <pose>1.33521 2.75696 0.000751 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-        <link name='link_1'>
-          <pose>1.34001 2.75809 -0.000751 0 -0 0</pose>
+          <pose>1.30295 3.36867 -0.000751 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -485,110 +453,11 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>2.30591 3.28326 11.1731 -0 1.5498 1.5682</pose>
+        <pose>2.37051 3.51487 11.178 -2e-06 1.5498 1.5682</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-    <model name='chair_1'>
-      <link name='link_0'>
-        <pose>-0.30674 -0.201817 0.000751 0 -0 0</pose>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://chair_1/meshes/frame.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://chair_1/materials/scripts</uri>
-              <uri>model://chair_1/materials/textures</uri>
-              <name>chair_1_frame</name>
-            </script>
-          </material>
-          <cast_shadows>1</cast_shadows>
-          <transparency>0</transparency>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://chair_1/meshes/frame.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <link name='link_1'>
-        <pose>-0.301944 -0.200687 -0.000751 0 -0 0</pose>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://chair_1/meshes/cushions.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://chair_1/materials/scripts</uri>
-              <uri>model://chair_1/materials/textures</uri>
-              <name>chair_1_cushion</name>
-            </script>
-          </material>
-          <cast_shadows>1</cast_shadows>
-          <transparency>0</transparency>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://chair_1/meshes/cushions.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <static>1</static>
-      <allow_auto_disable>1</allow_auto_disable>
-      <pose>1.68579 4.34294 0 0 -0 0</pose>
-    </model>
     <model name='chair_1_0'>
       <link name='link_0'>
         <pose>-0.30674 -0.201817 0.000751 0 -0 0</pose>
@@ -786,105 +655,6 @@
       <static>1</static>
       <allow_auto_disable>1</allow_auto_disable>
       <pose>1.66694 3.36006 0 0 -0 0</pose>
-    </model>
-    <model name='chair_1_2'>
-      <link name='link_0'>
-        <pose>-0.30674 -0.201817 0.000751 0 -0 0</pose>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://chair_1/meshes/frame.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://chair_1/materials/scripts</uri>
-              <uri>model://chair_1/materials/textures</uri>
-              <name>chair_1_frame</name>
-            </script>
-          </material>
-          <cast_shadows>1</cast_shadows>
-          <transparency>0</transparency>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://chair_1/meshes/frame.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <link name='link_1'>
-        <pose>-0.301944 -0.200687 -0.000751 0 -0 0</pose>
-        <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://chair_1/meshes/cushions.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://chair_1/materials/scripts</uri>
-              <uri>model://chair_1/materials/textures</uri>
-              <name>chair_1_cushion</name>
-            </script>
-          </material>
-          <cast_shadows>1</cast_shadows>
-          <transparency>0</transparency>
-        </visual>
-        <collision name='collision'>
-          <laser_retro>0</laser_retro>
-          <max_contacts>10</max_contacts>
-          <pose>0 0 0 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://chair_1/meshes/cushions.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <static>1</static>
-      <allow_auto_disable>1</allow_auto_disable>
-      <pose>1.65299 2.83869 0 0 -0 0</pose>
     </model>
   </world>
 </sdf>
